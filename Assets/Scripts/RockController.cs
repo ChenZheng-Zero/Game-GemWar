@@ -26,12 +26,24 @@ public class RockController : MonoBehaviour {
 		}
 	}
 
+	void Update () {
+		if (direction != Vector3.zero) {
+			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction * 0.6f);
+
+			if (collider && CheckStopingTag(collider.tag)) {
+				rb.velocity = Vector3.zero;
+				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
+				direction = Vector3.zero;
+			}
+		}
+	}
+
 	void OnDestroy() {
 		Instantiate (rock_collectable_prefab, transform.position, Quaternion.identity);
 	}
 
-	private bool CheckTag(string col_tag) {
-		if (col_tag == tag || col_tag == "base_blue" || col_tag == "base_red" || col_tag == "wall" || col_tag == "gem" ||
+	private bool CheckStopingTag(string col_tag) {
+		if (col_tag == tag || col_tag == "base_blue" || col_tag == "base_red" || col_tag == "wall" || col_tag == "gem_blue" || col_tag == "gem_red" ||
 			col_tag == "reborn_blue" || col_tag == "reborn_red" || team_number == PublicFunctions.instance.GetTeamNumber (col_tag)) {
 			return true;
 		} else {
@@ -48,7 +60,7 @@ public class RockController : MonoBehaviour {
 			} else if (collider.tag == opponent_rock_tag) {
 				Destroy (gameObject);
 				Destroy (collider.gameObject);
-			} else if (CheckTag(collider.tag)) {
+		} else if (CheckStopingTag(collider.tag)) {
 				rb.velocity = Vector3.zero;
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
