@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - player1
+  - player2
+  - player3
+  - player4
+  - gem
+  - diamond
+  - rock_blue
+  - rock_red
+  - base_blue
+  - base_red
+  - base
+  - reborn_blue
+  - reborn_red
+  - wall
+  - time_left
+  - rock_collectable
+  - total_time
+  - rock_left
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - player
+  - reborn
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
