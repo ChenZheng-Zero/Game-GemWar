@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class DialogBoxController : MonoBehaviour {
 
-	Text dialog_text;
+	Text text_field;
 
-	void Start () {
-		dialog_text = GetComponentInChildren<Text> ();
-		dialog_text.text = "?";
+	void Awake () {
+		text_field = transform.Find ("Canvas/Text").GetComponent<Text> ();
+		text_field.text = "?";
 	}
 	
 	void Update () {
@@ -17,7 +17,7 @@ public class DialogBoxController : MonoBehaviour {
 	}
 
 	public void EditText(string text){
-		dialog_text.text = text;
+		text_field.text = text;
 	}
 
 	public void ChangePosition(Vector3 pos){

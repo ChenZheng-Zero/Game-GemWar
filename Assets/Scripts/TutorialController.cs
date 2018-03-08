@@ -103,7 +103,6 @@ public class TutorialController : MonoBehaviour {
 
 	GameObject CreateDialogBox(Vector3 pos, string text){
 		GameObject box = Instantiate (dialog_box, pos, Quaternion.identity);
-		box.GetComponent<DialogBoxController> ().ChangePosition (pos);
 		box.GetComponent<DialogBoxController> ().EditText (text);
 		return box;
 	}
