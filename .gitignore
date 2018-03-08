@@ -32,6 +32,7 @@ sysinfo.txt
 *.7z
 *.apk
 *.exe
+*.app
 *.unitypackage
 .DS_Store
 thumbs.db
