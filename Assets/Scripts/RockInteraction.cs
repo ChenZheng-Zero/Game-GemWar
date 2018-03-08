@@ -125,13 +125,16 @@ public class RockInteraction : MonoBehaviour {
 		}
 
 		if (removing_opponent_rock) {
-			Vector3 direction = grid_base_movement.GetDirection ();
-			Vector3 offset = GetOffset ();
-
-			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction + offset);
-
-			if (!collider || !collider.CompareTag (opponent_rock_tag) || collider.transform.position != transform.position + direction + offset) {
+			if (reborn.GetReborning ()) {
 				removing_opponent_rock = false;
+			} else {
+				Vector3 direction = grid_base_movement.GetDirection ();
+				Vector3 offset = GetOffset ();
+				Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction + offset);
+
+				if (!collider || !collider.CompareTag (opponent_rock_tag) || collider.transform.position != transform.position + direction + offset) {
+					removing_opponent_rock = false;
+				}
 			}
 		}
 	}
