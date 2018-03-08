@@ -4,21 +4,23 @@ using UnityEngine;
 using InControl;
 
 public class TutorialController : MonoBehaviour {
-	/* Tutorial event driven system
+	/* Tutorial event-driven system
 	 * 0: Collect rock tutorial->
 	 * 1: Place rock tutorial
 	 * 2: Push rock tutorial->
 	 * 3: Break rock tutorial (self rock, opponent rock)
 	 * 4: Kill a fake opponent->
 	 * 5: Carry gem tutorial
-	 */
-
-	/* Shared methods:
+	 * 
+	 * 
+	 * 
+	 * Shared methods:
 	 * 1. CreateDialogBox(Vector3 pos, string text): create a dialog box at pos and initialize with text
 	 *    Returns the created game object.
 	 * 2. EditDialogBox(GameObject box, string text): edit the text of the dialog box.
 	 * 3. PlayerFunctionConstraint(bool allow_place_rock, bool allow_get_gems): prevent or allow user functions.
 	 */
+
 	public GameObject rock_collectable;
 	public GameObject dialog_box;
 	public GameObject down_pointer;
@@ -82,7 +84,7 @@ public class TutorialController : MonoBehaviour {
 
 		string text_1 = "\nCollect the rock on the ground.\n";
 		string text_2 = "Good job!\nYou can see the number of rocks (1/3) you are carrying.\nPress Y to continue.";
-		string text_3 = "Now wait for all the other players to finish this step.\n";
+		string text_3 = "\nNow please wait for all the other players to finish this step.\n";
 
 		Instantiate (rock_collectable, new Vector3 (-6f, 2f, 0), Quaternion.identity);
 		Instantiate (rock_collectable, new Vector3 (6f, 2f, 0), Quaternion.identity);
@@ -142,7 +144,8 @@ public class TutorialController : MonoBehaviour {
 	}
 
 
-	/* Public functions
+	/* 
+	 * Public functions
 	 * Shared by all levels.
 	 */
 	GameObject CreateDialogBox(Vector3 pos, string text){
