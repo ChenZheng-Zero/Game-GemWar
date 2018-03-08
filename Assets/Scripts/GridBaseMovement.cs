@@ -16,6 +16,7 @@ public class GridBaseMovement : MonoBehaviour {
 	private RockInteraction rock_interaction;
 
 	public float movement_speed = 4.0f;
+	public float input_magnitude_threshold = 0.8f;
 	public float holding_movement_speed = 2.0f;
 	public Vector3 initial_direction = Vector3.down;
 
@@ -30,22 +31,30 @@ public class GridBaseMovement : MonoBehaviour {
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
 	}
 
-	private Vector3 GetInput() {
+	private Vector3 GetInputDirection() {
 		float horizontal_input = input_device.LeftStickX;
 		float vertical_input = input_device.LeftStickY;
 
-		if (Mathf.Abs(horizontal_input) < 0.1 && Mathf.Abs(vertical_input) < 0.1) {
-			horizontal_input = 0.0f;
-			vertical_input = 0.0f;
-		} else if (Mathf.Abs(horizontal_input) > Mathf.Abs(vertical_input)) {
-			horizontal_input = 1.0f * Mathf.Sign(horizontal_input);
+		if (Mathf.Abs (horizontal_input) > Mathf.Abs (vertical_input)) {
+			horizontal_input = 1.0f * Mathf.Sign (horizontal_input);
 			vertical_input = 0.0f;
 		} else {
 			horizontal_input = 0.0f;
-			vertical_input = 1.0f * Mathf.Sign(vertical_input);
+			vertical_input = 1.0f * Mathf.Sign (vertical_input);
 		}
 
 		return new Vector3 (horizontal_input, vertical_input, 0.0f);
+	}
+
+	private float GetInputMagnitude() {
+		float horizontal_input_magnitude = Mathf.Abs (input_device.LeftStickX);
+		float vertical_input_magnitude =  Mathf.Abs (input_device.LeftStickY);
+
+		if (horizontal_input_magnitude > vertical_input_magnitude) {
+			return horizontal_input_magnitude;
+		} else {
+			return vertical_input_magnitude;
+		}
 	}
 
 	private bool CheckObstacle(Vector3 pos) {
@@ -71,34 +80,46 @@ public class GridBaseMovement : MonoBehaviour {
 
 		if (moving) {
 			return;
-		} else if (reborn.GetReborning() || rock_interaction.GetRemovingOpponentRock ()) {
+		}
+
+		if (reborn.GetReborning() || rock_interaction.GetRemovingOpponentRock ()) {
 			animator.speed = 0.0f;
 			return;
 		}
 
-		Vector3 input_direction = GetInput ();
 
-		if (input_direction == Vector3.zero) {
-			rb.velocity = Vector3.zero;
+		Vector3 input_direction = GetInputDirection ();
+		float input_magnitude = GetInputMagnitude ();
+
+//		Vector3 input_direction = GetInput ();
+//		if (input_direction == Vector3.zero) {
+//			rb.velocity = Vector3.zero;
+//			animator.speed = 0.0f;
+//			if (input_device.DPadLeft) {
+//				direction = Vector3.left;
+//			} else if (input_device.DPadRight) {
+//				direction = Vector3.right;
+//			} else if (input_device.DPadUp) {
+//				direction = Vector3.up;
+//			} else if (input_device.DPadDown) {
+//				direction = Vector3.down;
+//			}
+//			return;
+//		}
+
+
+		previous_direction = direction;
+		if (input_magnitude != 0) {
+			direction = input_direction;
+		}
+
+		if (input_magnitude < input_magnitude_threshold) {
 			animator.speed = 0.0f;
-
-			if (input_device.DPadLeft) {
-				direction = Vector3.left;
-			} else if (input_device.DPadRight) {
-				direction = Vector3.right;
-			} else if (input_device.DPadUp) {
-				direction = Vector3.up;
-			} else if (input_device.DPadDown) {
-				direction = Vector3.down;
-			}
-
 			return;
 		}
 
 		animator.speed = 1.0f;
 
-		previous_direction = direction;
-		direction = input_direction;
 
 		if (CheckObstacle (transform.position + direction)) {
 			rb.velocity = Vector3.zero;
@@ -123,8 +144,7 @@ public class GridBaseMovement : MonoBehaviour {
 //		bool cancel = false;
 //		if (moving_direction != previous_direction) {
 //			for (float t = 0.0f; t < 0.1f; t += Time.deltaTime) {
-//				if (GetInput () == Vector3.zero) {
-//					Debug.Log (GetInput ());
+//				if (GetInput () != moving_direction) {
 //					cancel = true;
 //					break;
 //				}
