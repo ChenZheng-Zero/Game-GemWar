@@ -12,9 +12,15 @@ public class TutorialController : MonoBehaviour {
 	 * 5: Carry gem tutorial
 	 */
 
+	/* Shared methods:
+	 * 1. CreateDialogBox(Vector3 pos, string text): create a dialog box at pos and initialize with text
+	 *    Returns the created game object.
+	 * 2. EditDialogBox(GameObject box, string text): edit the text of the dialog box
+	 */
+
 	public GameObject rock_collectable;
-
-
+	public GameObject dialog_box;
+	public GameObject pointer;
 
 	int everyone_progress = 0;
 	int[] player_progress;
@@ -70,6 +76,9 @@ public class TutorialController : MonoBehaviour {
 		Instantiate (rock_collectable, new Vector3 (-6f, -2f, 0), Quaternion.identity);
 		Instantiate (rock_collectable, new Vector3 (6f, -2f, 0), Quaternion.identity);
 
+		GameObject box = CreateDialogBox (Vector3.zero, "??????");
+
+
 		while (true) {
 			for (int i = 0; i < 4; ++i) {
 				if (player_progress [i] == 0 && !players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ()) {
@@ -92,5 +101,14 @@ public class TutorialController : MonoBehaviour {
 		yield return null;
 	}
 
+	GameObject CreateDialogBox(Vector3 pos, string text){
+		GameObject box = Instantiate (dialog_box, pos, Quaternion.identity);
+		box.GetComponent<DialogBoxController> ().ChangePosition (pos);
+		box.GetComponent<DialogBoxController> ().EditText (text);
+		return box;
+	}
 
+	void EditDialogBox(GameObject box, string text){
+		box.GetComponent<DialogBoxController> ().EditText (text);
+	}
 }
