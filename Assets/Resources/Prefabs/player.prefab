@@ -293,8 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a2eb0ae2c44e50839300b86426810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reborn_blue: {fileID: 0}
-  reborn_red: {fileID: 0}
   rock_speed: 10
 --- !u!114 &114764088687936442
 MonoBehaviour:

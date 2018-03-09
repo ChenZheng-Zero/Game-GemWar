@@ -6,7 +6,7 @@ public class FakePlayerController : MonoBehaviour {
 
 	bool is_alive;
 
-	void Start () {
+	void Awake () {
 		is_alive = true;
 	}
 	

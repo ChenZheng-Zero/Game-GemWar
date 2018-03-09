@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.38073993, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1708,13 +1708,13 @@ MonoBehaviour:
   right_pointer: {fileID: 1364145608506654, guid: 7e01acc00699f4fcd97d70c4231d3171,
     type: 2}
   box_sensor: {fileID: 1026416636923574, guid: 296548ae4f9e1431b9d32730ee0e1bd1, type: 2}
-  fake_red_opponent: {fileID: 1015837069987232, guid: ff842f9f63a63478d90ca5c60c41748b,
+  fake_red_opponent: {fileID: 1369106459340590, guid: 90126f71d092a49b3a508c0851e94177,
     type: 2}
-  fake_blue_opponent: {fileID: 1018270761285764, guid: a696a0d6eabeb451a8795c612c0f4319,
+  fake_blue_opponent: {fileID: 1784113269058146, guid: a696a0d6eabeb451a8795c612c0f4319,
     type: 2}
   red_rock: {fileID: 1762573267520350, guid: 022e95dae64e446e6ab3cc2033ee5862, type: 2}
   blue_rock: {fileID: 1327164681769542, guid: be596ff55134f42bb8b905daf57985ca, type: 2}
-  start_level: 0
+  start_level: 4
 --- !u!4 &424234607
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class BoxSensorController : MonoBehaviour {
 	int id;
 	bool is_stand_sensor;
 
-	bool is_standing;
+	public bool is_standing;
 
 	void Start () {
 		is_standing = false;
