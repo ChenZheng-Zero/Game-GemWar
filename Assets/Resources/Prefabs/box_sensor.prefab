@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 65716756096332512}
   - component: {fileID: 114764217645691710}
   m_Layer: 0
-  m_Name: BoxSensor
+  m_Name: box_sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
