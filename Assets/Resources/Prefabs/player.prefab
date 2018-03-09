@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement_speed: 4
+  input_magnitude_threshold: 0.7
+  change_direction_threshold: 0.15
   holding_movement_speed: 2
   initial_direction: {x: 0, y: -1, z: 0}
 --- !u!114 &114473651632642024
