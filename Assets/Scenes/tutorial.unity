@@ -1671,6 +1671,12 @@ MonoBehaviour:
     type: 2}
   left_pointer: {fileID: 1364145608506654, guid: c468f1fd8a416400f8d9e68aaa2e7311,
     type: 2}
+  box_sensor: {fileID: 1026416636923574, guid: 296548ae4f9e1431b9d32730ee0e1bd1, type: 2}
+  fake_red_opponent: {fileID: 1015837069987232, guid: ff842f9f63a63478d90ca5c60c41748b,
+    type: 2}
+  fake_blue_opponent: {fileID: 1018270761285764, guid: a696a0d6eabeb451a8795c612c0f4319,
+    type: 2}
+  right_pointer: {fileID: 0}
   start_level: 0
 --- !u!4 &424234607
 Transform:

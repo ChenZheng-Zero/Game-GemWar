@@ -30,7 +30,6 @@ public class TutorialController : MonoBehaviour {
 	public GameObject fake_red_opponent;
 	public GameObject fake_blue_opponent;
 	public GameObject right_pointer;
-	private InputDevice input_device;
 
 	GameObject[] players;
 
@@ -45,7 +44,6 @@ public class TutorialController : MonoBehaviour {
 	 * Update(): check and progress to next level
 	 */
 	void Start () {
-		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
 		/* initialize player progress to 0 */
 		player_progress = new float[4];
 		for (int i = 0; i < 4; ++i) {
@@ -485,12 +483,12 @@ public class TutorialController : MonoBehaviour {
 			for (int i = 0; i < 4; ++i) {
 				players [i].GetComponent<RockInteraction> ().enabled = allow_place_rock;
 				players [i].GetComponent<BaseInteraction> ().enabled = allow_get_gems;
-				players [i].GetComponent<GridBaseMovement> ().enabled = allow_get_gems;
+				players [i].GetComponent<GridBaseMovement> ().enabled = allow_movement;
 			}
 		} else {
 			players [player_id].GetComponent<RockInteraction> ().enabled = allow_place_rock;
 			players [player_id].GetComponent<BaseInteraction> ().enabled = allow_get_gems;
-			players [player_id].GetComponent<GridBaseMovement> ().enabled = allow_get_gems;
+			players [player_id].GetComponent<GridBaseMovement> ().enabled = allow_movement;
 
 		}
 	}

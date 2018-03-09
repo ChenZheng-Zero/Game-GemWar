@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212050173106234936}
   - component: {fileID: 54311092327537778}
   - component: {fileID: 65184169653692464}
-  - component: {fileID: 95504806015272052}
+  - component: {fileID: 114109972403184050}
   m_Layer: 0
   m_Name: fake_player_blue
   m_TagString: Untagged
@@ -220,23 +220,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95504806015272052
-Animator:
-  serializedVersion: 3
+--- !u!114 &114109972403184050
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018270761285764}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8d7542e4fd004cba92e2e33f2e273c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e71a66bc732642dc9e2ba435a368acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212021657950485888
 SpriteRenderer:
   m_ObjectHideFlags: 1

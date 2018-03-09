@@ -9,7 +9,6 @@ public class DialogBoxController : MonoBehaviour {
 
 	void Awake () {
 		text_field = transform.Find ("Canvas/Text").GetComponent<Text> ();
-		text_field.text = "?";
 	}
 	
 	void Update () {

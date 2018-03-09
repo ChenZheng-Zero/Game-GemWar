@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212497214866534796}
   - component: {fileID: 54106011900656120}
   - component: {fileID: 65196124128032082}
-  - component: {fileID: 95138584401143216}
+  - component: {fileID: 114272266411104010}
   m_Layer: 0
   m_Name: fake_player_red
   m_TagString: Untagged
@@ -220,23 +220,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95138584401143216
-Animator:
-  serializedVersion: 3
+--- !u!114 &114272266411104010
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015837069987232}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8d7542e4fd004cba92e2e33f2e273c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e71a66bc732642dc9e2ba435a368acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212402846760145992
 SpriteRenderer:
   m_ObjectHideFlags: 1
