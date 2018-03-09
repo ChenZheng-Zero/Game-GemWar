@@ -39,6 +39,10 @@ public class RockBarDisplayer : MonoBehaviour {
 		rock_count += val;
 	}
 
+	public int GetRockCount() {
+		return rock_count;
+	}
+
 	public bool IfRockCountZero() {
 		return rock_count == 0;
 	}
