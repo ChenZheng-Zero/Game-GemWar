@@ -198,6 +198,7 @@ public class TutorialController : MonoBehaviour {
 						EditDialogBox (diag_box [i], text_2);
 					} else {
 						player_progress [i] = 1f;
+						PlayerFunctionConstraint (false, false, true, i);
 						EditDialogBox (diag_box [i], text_1);
 					}
 				}  
