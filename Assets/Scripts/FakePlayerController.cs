@@ -17,7 +17,7 @@ public class FakePlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.CompareTag ("rock_red") || other.CompareTag ("rock_blue")) {
 			is_alive = false;
-			Destroy (other);
+			Destroy (other.gameObject);
 		}
 	}
 

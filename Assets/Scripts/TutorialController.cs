@@ -414,7 +414,8 @@ public class TutorialController : MonoBehaviour {
 
 		while (true) {
 			for (int i = 0; i < 4; ++i) {
-				if (player_progress [i] == 5.0f && !fake_players [i].GetComponent<FakePlayerController> ().IsAlive ()) {
+				if (player_progress [i] == 5.0f && fake_players [i] && !fake_players [i].GetComponent<FakePlayerController> ().IsAlive ()) {
+					Destroy (fake_players [i]);
 					if (i == 0 || i == 1) {
 						fake_players [i].transform.position = new Vector3 (8f, 0f, 0f);
 						pointers [i].transform.position = new Vector3 (9f, 1f, 1f);
