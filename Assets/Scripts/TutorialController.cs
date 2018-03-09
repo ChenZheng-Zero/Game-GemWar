@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InControl;
+using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour {
 	/* Tutorial event-driven system
@@ -30,6 +31,8 @@ public class TutorialController : MonoBehaviour {
 	public GameObject fake_red_opponent;
 	public GameObject fake_blue_opponent;
 	public GameObject right_pointer;
+	public GameObject red_rock;
+	public GameObject blue_rock;
 
 	GameObject[] players;
 
@@ -161,7 +164,66 @@ public class TutorialController : MonoBehaviour {
 		go_next_level = true;
 	}
 
+	IEnumerator Level1(){
+		Debug.Log ("Level 1");
+		PlayerFunctionConstraint (false, false, true);
 
+		//check every can place a rock
+		for (int i = 0; i < 4; ++i) {
+			Debug.Assert (!players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ());
+		}
+
+		string text_1 = "Stand at the arrow, and face right\n";
+		string text_2 = "Press A to place the rock\n";
+		string text_3 = "Now wait for all the other players to finish this step.\n";
+
+		GameObject[] diag_box = new GameObject[4];
+		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
+		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
+		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
+		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
+
+		GameObject[] pointers = new GameObject[4];
+		pointers[0] = Instantiate (right_pointer, new Vector3 (-5f, 2f, 0), Quaternion.identity);
+		pointers[1] = Instantiate (right_pointer, new Vector3 (5f, 2f, 0), Quaternion.identity);
+		pointers[2] = Instantiate (right_pointer, new Vector3 (-5f, -2f, 0), Quaternion.identity);
+		pointers[3] = Instantiate (right_pointer, new Vector3 (5f, -2f, 0), Quaternion.identity);
+
+		while (true) {
+			for (int i = 0; i < 4; ++i) {
+				if (player_progress [i] == 1.0f &&
+					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) <= 0.5f &&
+					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) <= 0.3f &&
+					players[i].GetComponent<SpriteRenderer>().sprite.name.StartsWith( "player_right")){
+					PlayerFunctionConstraint (false, false, false, i);
+					player_progress [i] = 1.5f;
+					EditDialogBox (diag_box [i], text_2);
+				}  
+				if (player_progress [i] == 1.5f) {
+					PlayerFunctionConstraint (true, false, false, i);
+					if (players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ()) {
+						EditDialogBox (diag_box [i], text_3);
+						player_progress [i] = 2.0f;
+					}
+				}
+			}
+			if (CheckEveryPlayer (1)) {
+				everyone_progress += 2;
+				// TODO delete
+				for (int i = 0; i < 4; ++i) {
+					player_progress [i] = 3.0f;
+				}
+				break;
+			}
+			yield return null;
+		}
+		// restore
+		for (int i = 0; i < 4; ++i) {
+			Destroy (diag_box [i]);
+			Destroy(pointers [i]);
+		}
+		go_next_level = true;
+	}
 
 	IEnumerator Level2(){
 		Debug.Log ("Level 2");
@@ -228,6 +290,94 @@ public class TutorialController : MonoBehaviour {
 		go_next_level = true;
 	}
 
+
+	IEnumerator Level3(){
+		Debug.Log ("Level 3");
+		PlayerFunctionConstraint (true, false, true);
+
+		string text_1 = "Stand at the arrow, and face the rock\n Press B to break self rock\n Recollect it";
+		string text_2 = "Now wait for all the other players to finish this step.\n";
+
+		GameObject[] diag_box = new GameObject[4];
+		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
+		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
+		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
+		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
+
+		GameObject[] pointers = new GameObject[4];
+		pointers[0] = Instantiate (down_pointer, new Vector3 (-2f, 2f, 0), Quaternion.identity);
+		pointers[1] = Instantiate (down_pointer, new Vector3 (7f, 2f, 0), Quaternion.identity);
+		pointers[2] = Instantiate (down_pointer, new Vector3 (-2f, -2f, 0), Quaternion.identity);
+		pointers[3] = Instantiate (down_pointer, new Vector3 (7f, -2f, 0), Quaternion.identity);
+
+		while (true) {
+			for (int i = 0; i < 4; ++i) {
+				if (player_progress [i] == 3 && players [i].GetComponent<RockBarDisplayer> ().GetRockCount() == 1){
+					player_progress [i] = 4.0f;
+					PlayerFunctionConstraint (false, false, true, i);
+					Destroy (pointers [i]);
+					EditDialogBox (diag_box [i], text_2);
+				} 
+			}
+			if (CheckEveryPlayer (3)) {
+				everyone_progress += 1;
+				break;
+			}
+			yield return null;
+		}
+		for (int i = 0; i < 4; ++i) {
+			Destroy (diag_box [i]);
+			Destroy (pointers [i]);
+		}
+		go_next_level = true;
+	}
+
+
+	IEnumerator Level4(){
+		Debug.Log ("Level 4");
+		PlayerFunctionConstraint (true, false, true);
+
+		string text_1 = "Stand at the arrow, and face the rock\n Press B to break opponent's rock\n Recollect it";
+		string text_2 = "Now wait for all the other players to finish this step.\n";
+
+		GameObject[] opponent_rocks = new GameObject[4];
+		opponent_rocks[0] = Instantiate (red_rock, new Vector3 (-7f, 2f, 0), Quaternion.identity);
+		opponent_rocks[1] = Instantiate (red_rock, new Vector3 (7f, 2f, 0), Quaternion.identity);
+		opponent_rocks[2] = Instantiate (blue_rock, new Vector3 (-7f, -2f, 0), Quaternion.identity);
+		opponent_rocks[3] = Instantiate (blue_rock, new Vector3 (7f, -2f, 0), Quaternion.identity);
+
+		GameObject[] diag_box = new GameObject[4];
+		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
+		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
+		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
+		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
+
+		while (true) {
+			for (int i = 0; i < 4; ++i) {
+				if (player_progress [i] == 4.0f && players [i].GetComponent<RockBarDisplayer> ().GetRockCount() == 2){
+					PlayerFunctionConstraint (false, false, true, i);
+					player_progress [i] = 5.0f;
+					EditDialogBox (diag_box [i], text_2);
+				} 
+			}
+			if (CheckEveryPlayer (4)) {
+				everyone_progress += 2;
+				// TODO delete
+				for (int i = 0; i < 4; ++i) {
+					player_progress [i] = 6.0f;
+				}
+				break;
+				break;
+			}
+			yield return null;
+		}
+
+		for (int i = 0; i < 4; ++i) {
+			Destroy (diag_box [i]);
+		}
+		go_next_level = true;
+	}
+
 	IEnumerator Level5(){
 		Debug.Log ("Level 5");
 
@@ -280,163 +430,11 @@ public class TutorialController : MonoBehaviour {
 		}
 		go_next_level = true;
 	}
-
-
-	IEnumerator Level1(){
-		Debug.Log ("Level 1");
-		PlayerFunctionConstraint (false, false, true);
-
-		//check every can place a rock
-		for (int i = 0; i < 4; ++i) {
-			Debug.Assert (!players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ());
-		}
-
-		string text_1 = "Stand at the arrow, and face right\n";
-		string text_2 = "Press A to place the rock\n";
-		string text_3 = "Now wait for all the other players to finish this step.\n";
-
-		GameObject[] diag_box = new GameObject[4];
-		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
-		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
-		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
-		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
-
-		GameObject[] pointers = new GameObject[4];
-		pointers[0] = Instantiate (right_pointer, new Vector3 (-6f, 2f, 0), Quaternion.identity);
-		pointers[1] = Instantiate (right_pointer, new Vector3 (6f, 2f, 0), Quaternion.identity);
-		pointers[2] = Instantiate (right_pointer, new Vector3 (-6f, -2f, 0), Quaternion.identity);
-		pointers[3] = Instantiate (right_pointer, new Vector3 (6f, -2f, 0), Quaternion.identity);
-
-		while (true) {
-			for (int i = 0; i < 4; ++i) {
-				if (player_progress [i] == 1.0f &&
-					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) <= 0.5f &&
-					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) <= 0.3f &&
-					players [i].transform.forward == Vector3.right) {
-					Destroy (pointers [i]);
-					PlayerFunctionConstraint (false, false, false);
-					player_progress [i] = 1.5f;
-					EditDialogBox (diag_box [i], text_2);
-				} 
-				if (player_progress [i] == 1.5f) {
-					PlayerFunctionConstraint (true, false, false);
-					if (players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ()) {
-						EditDialogBox (diag_box [i], text_3);
-						player_progress [i] = 2.0f;
-					}
-				}
-			}
-			if (CheckEveryPlayer (1)) {
-				everyone_progress += 1;
-				break;
-			}
-			yield return null;
-		}
-		// restore
-		for (int i = 0; i < 4; ++i) {
-			Destroy (diag_box [i]);
-		}
-		go_next_level = true;
-	}
-
-	IEnumerator Level3(){
-		Debug.Log ("Level 3");
-		PlayerFunctionConstraint (true, false, true);
-
-		string text_1 = "Stand at the arrow, and face the rock\n";
-		string text_2 = "Press B to break your own rock\n";
-		string text_3 = "Now wait for all the other players to finish this step.\n";
-
-		GameObject[] diag_box = new GameObject[4];
-		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
-		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
-		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
-		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
-
-		GameObject[] pointers = new GameObject[4];
-		pointers[0] = Instantiate (down_pointer, new Vector3 (-2f, 2f, 0), Quaternion.identity);
-		pointers[1] = Instantiate (down_pointer, new Vector3 (2f, 2f, 0), Quaternion.identity);
-		pointers[2] = Instantiate (down_pointer, new Vector3 (-2f, -2f, 0), Quaternion.identity);
-		pointers[3] = Instantiate (down_pointer, new Vector3 (2f, -2f, 0), Quaternion.identity);
-
-		while (true) {
-			for (int i = 0; i < 4; ++i) {
-				if (player_progress [i] == 2.0f &&
-					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.5f &&
-					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f &&
-					players [i].transform.forward == Vector3.right) {
-					PlayerFunctionConstraint (true, false, false);
-					Destroy (pointers [i]);
-					player_progress [i] = 2.5f;
-					EditDialogBox (diag_box [i], text_2);
-				} 
-				if (player_progress [i] == 2.5f) {
-					PlayerFunctionConstraint (true, false, false);
-					if (players [i].GetComponent<RockBarDisplayer> ().GetRockCount() == 1) {
-						EditDialogBox (diag_box [i], text_3);
-						player_progress [i] = 3.0f;
-						PlayerFunctionConstraint (false, false, true);
-					}
-				}
-			}
-			if (CheckEveryPlayer (3)) {
-				everyone_progress += 2;
-				break;
-			}
-			yield return null;
-		}
-	}
-
-	IEnumerator Level4(){
-		Debug.Log ("Level 4");
-		PlayerFunctionConstraint (false, false, true);
-
-		string text_1 = "Stand at the arrow, and face the rock\n";
-		string text_2 = "Press B to break opponent's rock\n";
-		string text_3 = "Now wait for all the other players to finish this step.\n";
-
-		GameObject[] diag_box = new GameObject[4];
-		diag_box [0] = CreateDialogBox (new Vector3 (-2.3f, 3f, 0f), text_1);
-		diag_box [1] = CreateDialogBox (new Vector3 (2.3f, 3f, 0f), text_1);
-		diag_box [2] = CreateDialogBox (new Vector3 (-2.3f, -1f, 0f), text_1);
-		diag_box [3] = CreateDialogBox (new Vector3 (2.3f, -1f, 0f), text_1);
-
-		GameObject[] pointers = new GameObject[4];
-		pointers[0] = Instantiate (down_pointer, new Vector3 (-6f, 2.7f, 0), Quaternion.identity);
-		pointers[1] = Instantiate (down_pointer, new Vector3 (6f, 2.7f, 0), Quaternion.identity);
-		pointers[2] = Instantiate (down_pointer, new Vector3 (-6f, -2.3f, 0), Quaternion.identity);
-		pointers[3] = Instantiate (down_pointer, new Vector3 (6f, -2.3f, 0), Quaternion.identity);
-
-		while (true) {
-			for (int i = 0; i < 4; ++i) {
-				if (player_progress [i] == 3.0f &&
-					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.5f &&
-					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f &&
-					players [i].transform.forward == Vector3.right) {
-					PlayerFunctionConstraint (true, false, false);
-					Destroy (pointers [i]);
-					player_progress [i] = 3.5f;
-					EditDialogBox (diag_box [i], text_2);
-				} 
-				if (player_progress [i] == 3.5f) {
-					PlayerFunctionConstraint (true, false, false);
-					if (players [i].GetComponent<RockBarDisplayer> ().GetRockCount() == 2) {
-						EditDialogBox (diag_box [i], text_3);
-						player_progress [i] = 4.0f;
-						PlayerFunctionConstraint (false, false, true);
-					}
-				}
-			}
-			if (CheckEveryPlayer (4)) {
-				everyone_progress += 1;
-				break;
-			}
-			yield return null;
-		}
-	}
+		
 
 	IEnumerator Level6(){
 		Debug.Log ("Level 6");
+		Destroy(GameObject.Find("Walls/TemporaryWalls"));
 		PlayerFunctionConstraint (false, true, true);
 
 		string text_1 = "Move to opponents' gem base\n Press A to steal a gem\n";
@@ -460,12 +458,12 @@ public class TutorialController : MonoBehaviour {
 					if (!players [i].GetComponent<GemInteraction> ().GetHolding()) {
 						EditDialogBox (diag_box [i], text_3);
 						player_progress [i] = 7.0f;
-						PlayerFunctionConstraint (false, false, true);
+						PlayerFunctionConstraint (false, false, true, i);
 					}
 				}
 			}
 			if (CheckEveryPlayer (7)) {
-				everyone_progress += 1;
+				SceneManager.LoadScene (0);
 				break;
 			}
 			yield return null;

@@ -1,11 +1,27 @@
 fileFormatVersion: 2
 guid: a1f949a6ae68c4ad5b32407df50a926d
-timeCreated: 1520481278
+timeCreated: 1520562947
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rock_collectable: {fileID: 1207935961137600, guid: 897e2d95bc1714768820a87416bba0a0,
+      type: 2}
+  - dialog_box: {fileID: 1454093782175908, guid: d553141fa4efb4732b2f63fea25c35dd,
+      type: 2}
+  - down_pointer: {fileID: 1816452390725042, guid: 2099cff7d110e4daeb2311bd35f8f673,
+      type: 2}
+  - left_pointer: {fileID: 1364145608506654, guid: c468f1fd8a416400f8d9e68aaa2e7311,
+      type: 2}
+  - box_sensor: {fileID: 1026416636923574, guid: 296548ae4f9e1431b9d32730ee0e1bd1,
+      type: 2}
+  - fake_red_opponent: {fileID: 1015837069987232, guid: ff842f9f63a63478d90ca5c60c41748b,
+      type: 2}
+  - fake_blue_opponent: {fileID: 1018270761285764, guid: a696a0d6eabeb451a8795c612c0f4319,
+      type: 2}
+  - right_pointer: {fileID: 1364145608506654, guid: 7e01acc00699f4fcd97d70c4231d3171,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
