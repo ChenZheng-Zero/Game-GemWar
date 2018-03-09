@@ -456,12 +456,16 @@ public class TutorialController : MonoBehaviour {
 		string text_3 = "Now wait for all the other players to finish this step.\n";
 
 		InitAllDiagBox (text_1);
+		diag_box [0].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (-5f, 3f, 0f));
+		diag_box [1].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (5f, 3f, 0f));
+		diag_box [2].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (-5f, -3f, 0f));
+		diag_box [3].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (5f, -3f, 0f));
 
 		GameObject[] pointers = new GameObject[4];
-		pointers[0] = Instantiate (down_pointer, new Vector3 (-5f, 1f, 0), Quaternion.identity);
+		pointers[0] = Instantiate (down_pointer, new Vector3 (6f, 1f, 0), Quaternion.identity);
 		pointers[1] = Instantiate (down_pointer, new Vector3 (5f, 1f, 0), Quaternion.identity);
 		pointers[2] = Instantiate (up_pointer, new Vector3 (-5f, -1f, 0), Quaternion.identity);
-		pointers[3] = Instantiate (up_pointer, new Vector3 (5f, -1f, 0), Quaternion.identity);
+		pointers[3] = Instantiate (up_pointer, new Vector3 (-6f, -1f, 0), Quaternion.identity);
 
 		while (true) {
 			for (int i = 0; i < 4; ++i) {
@@ -469,6 +473,14 @@ public class TutorialController : MonoBehaviour {
 					players [i].GetComponent<GemInteraction> ().GetHolding()) {
 					player_progress [i] = 6.5f;
 					EditDialogBox (diag_box [i], text_2);
+					Vector3 pos = pointers [i].gameObject.transform.position;
+					Vector3 new_pos = new Vector3 (-pos.x, pos.y, pos.z);
+					Destroy (pointers [i]);
+					if (i < 2) {
+						pointers [i] = Instantiate (down_pointer, new_pos, Quaternion.identity);
+					} else {
+						pointers [i] = Instantiate (up_pointer, new_pos, Quaternion.identity);
+					}
 				} 
 				if (player_progress [i] == 6.5f) {
 					if (!players [i].GetComponent<GemInteraction> ().GetHolding()) {
