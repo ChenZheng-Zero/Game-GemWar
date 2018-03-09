@@ -279,6 +279,7 @@ public class TutorialController : MonoBehaviour {
 					PlayerFunctionConstraint (false, false, true, i);
 					player_progress [i] = 2.5f;
 					EditDialogBox (diag_box [i], text_2);
+					Destroy (rock_sensor [i]);
 				}
 				if (player_progress [i] == 2.5f && players[i].GetComponent<PlayerControl>().GetInputDevice().Action4) {
 					player_progress [i] = 3.0f;
@@ -295,7 +296,7 @@ public class TutorialController : MonoBehaviour {
 		// restore
 		for (int i = 0; i < 4; ++i){
 			Destroy (stand_sensor [i]);
-			Destroy (rock_sensor [i]);
+//			Destroy (rock_sensor [i]);
 			Destroy (pointers [i]);
 		}
 		go_next_level = true;
