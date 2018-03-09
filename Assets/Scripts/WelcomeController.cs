@@ -19,7 +19,6 @@ public class WelcomeController : MonoBehaviour {
 		for (int i = 0; i < 4; ++i) {
 			players [i] = GameObject.Find ("Players/player" + (i + 1).ToString ());
 			sprites [i] = GameObject.Find ("P" + (i + 1).ToString () + "Sprite");
-			sprites [i].GetComponent<SpriteRenderer> ().enabled = false;
 			choice [0] = 0;
 		}
 	}
@@ -28,12 +27,10 @@ public class WelcomeController : MonoBehaviour {
 		for (int i = 0; i < 4; ++i) {
 			if (players [i].GetComponent<PlayerControl> ().GetInputDevice ().Action1) {
 				choice [i] = 1;
-				sprites [i].GetComponent<SpriteRenderer> ().enabled = true;
 				sprites [i].GetComponent<SpriteRenderer> ().sprite = button_A;
 			}
 			if (players [i].GetComponent<PlayerControl> ().GetInputDevice ().Action2) {
 				choice [i] = 2;
-				sprites [i].GetComponent<SpriteRenderer> ().enabled = true;
 				sprites [i].GetComponent<SpriteRenderer> ().sprite = button_B;
 			}
 		}
