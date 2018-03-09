@@ -54,18 +54,8 @@ public class BaseInteraction : MonoBehaviour {
 
 		if (input_device.Action1 && !key_down) {
 			key_down = true;
-
-			Vector3 offset;
 			Vector3 direction = grid_base_movement.GetDirection ();
-			if (direction == Vector3.up || direction == Vector3.down) {
-				offset = Vector3.right;
-			} else {
-				offset = Vector3.up;
-			}
-
-			if (!CheckBase (transform.position + direction * 0.7f + offset * 0.5f)) {
-				CheckBase (transform.position + direction * 0.7f - offset * 0.5f);
-			}
+			CheckBase (transform.position + direction * 0.7f);
 		}
 
 		if (!input_device.Action1 && key_down) {
