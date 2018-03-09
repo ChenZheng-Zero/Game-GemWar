@@ -1671,6 +1671,7 @@ MonoBehaviour:
     type: 2}
   left_pointer: {fileID: 1364145608506654, guid: c468f1fd8a416400f8d9e68aaa2e7311,
     type: 2}
+  start_level: 0
 --- !u!4 &424234607
 Transform:
   m_ObjectHideFlags: 0
