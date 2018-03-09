@@ -1714,7 +1714,7 @@ MonoBehaviour:
     type: 2}
   red_rock: {fileID: 1762573267520350, guid: 022e95dae64e446e6ab3cc2033ee5862, type: 2}
   blue_rock: {fileID: 1327164681769542, guid: be596ff55134f42bb8b905daf57985ca, type: 2}
-  start_level: 4
+  start_level: 0
 --- !u!4 &424234607
 Transform:
   m_ObjectHideFlags: 0
