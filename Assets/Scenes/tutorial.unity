@@ -1700,7 +1700,7 @@ MonoBehaviour:
   rock_collectable: {fileID: 1207935961137600, guid: 897e2d95bc1714768820a87416bba0a0,
     type: 2}
   dialog_box: {fileID: 1454093782175908, guid: d553141fa4efb4732b2f63fea25c35dd, type: 2}
-  letter: {fileID: 1329154796435488, guid: 7b7d1895cc9654a0e9c1a1492de7c8fd, type: 2}
+  letter: {fileID: 1262598354401686, guid: 7b7d1895cc9654a0e9c1a1492de7c8fd, type: 2}
   up_pointer: {fileID: 1364145608506654, guid: b1970fcfc25454e4aba316a37c158bb3, type: 2}
   down_pointer: {fileID: 1816452390725042, guid: 2099cff7d110e4daeb2311bd35f8f673,
     type: 2}
@@ -1716,6 +1716,15 @@ MonoBehaviour:
   red_rock: {fileID: 1762573267520350, guid: 022e95dae64e446e6ab3cc2033ee5862, type: 2}
   blue_rock: {fileID: 1327164681769542, guid: be596ff55134f42bb8b905daf57985ca, type: 2}
   tick: {fileID: 1954164355007316, guid: 5229b0ccef07847f594820a93e1b0600, type: 2}
+  video_clips:
+  - {fileID: 32900000, guid: 6dff1d5accee24c4abcc01429be8663f, type: 3}
+  - {fileID: 32900000, guid: a0f86d9c104af46dc8c5f28e03474134, type: 3}
+  - {fileID: 32900000, guid: da5388766cb654309a40183e78913ba5, type: 3}
+  - {fileID: 32900000, guid: 035fdb4e4d0b44343997f81e13f77426, type: 3}
+  - {fileID: 32900000, guid: c600cba57dd224f92890b71291acd092, type: 3}
+  - {fileID: 32900000, guid: ccc941af72572483f94d2f0a7c504fa2, type: 3}
+  - {fileID: 32900000, guid: f62860c0216ef49e0b33c0c807a6796b, type: 3}
+  - {fileID: 32900000, guid: 1efb286c628674a089eb95006373c639, type: 3}
   start_level: 0
 --- !u!4 &424234607
 Transform:

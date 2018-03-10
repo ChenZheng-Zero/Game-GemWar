@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class TutorialController : MonoBehaviour {
 	/* Tutorial event-driven system
@@ -36,6 +37,7 @@ public class TutorialController : MonoBehaviour {
 	public GameObject red_rock;
 	public GameObject blue_rock;
 	public GameObject tick;
+	public VideoClip[] video_clips;
 
 	GameObject[] diag_box;
 	GameObject[] players;
@@ -129,12 +131,12 @@ public class TutorialController : MonoBehaviour {
 
 		string text_1 = "\nCollect the rock on the ground.\n";
 		string text_2 = "Welcome to the Gem World!\n\nIn this tutorial, we will guide you to get familiar with this game.";
-		string text_3 = "Tutorial 1: Collect Rock\n\nYou can stand on a rock to collect it.";
+		string text_3 = "Tutorial 1: Collect Rock\n\nYou can stand on a small rock to collect it.";
 
 		InitAllDiagBox ("");
 
 		GameObject[] pointers = new GameObject[4];
-		GameObject letter_box = CreateLetter (new string[]{ text_2, text_3 });
+		GameObject letter_box = CreateLetter (new string[]{ text_2, text_3 }, new VideoClip[]{null, video_clips[0]});
 
 		bool initialized = false;
 		while (true) {
@@ -182,11 +184,11 @@ public class TutorialController : MonoBehaviour {
 		string text_2 = "Press A to place the rock.\n";
 
 		string text_3 = "Good Job!\n\nNotice that you can read the number of rocks you have collected from the bar on the top of you.";
-		string text_4 = "Tutorial 2: Place Rock\n\nYou can place a rock on the ground at which you are facing.";
+		string text_4 = "Tutorial 2: Place Rock\n\nYou can place a rock on the ground at which you are facing by pressing A.";
 
 		GameObject[] pointers = new GameObject[4];
 
-		GameObject letter_box = CreateLetter (new string[]{ text_3, text_4 });
+		GameObject letter_box = CreateLetter (new string[]{ text_3, text_4 }, new VideoClip[]{null, video_clips[1]});
 
 		bool initialized = false;
 		while (true) {
@@ -245,7 +247,7 @@ public class TutorialController : MonoBehaviour {
 		Debug.Log ("Level 2");
 
 		string text_1 = "Stand on the arrow, face the rock, and press A.\n";
-		string text_3 = "Tutorial 3: Push Rock\n\nYou can shoot a rock by pushing it on the side. Press A when you are near the rock.";
+		string text_3 = "Tutorial 3: Push Rock\n\nYou can shoot a rock by pushing it on the side. Press A when you face to the rock.";
 
 		GameObject[] stand_sensor = new GameObject[4];
 		stand_sensor [0] = Instantiate (box_sensor, new Vector3 (-5f, 2f, 0f), Quaternion.identity);
@@ -267,7 +269,7 @@ public class TutorialController : MonoBehaviour {
 			rock_sensor [i].GetComponent<BoxSensorController> ().SetProperty (i, false);
 		}
 
-		GameObject letter_box = CreateLetter (new string[]{text_3});
+		GameObject letter_box = CreateLetter (new string[]{text_3},  new VideoClip[]{video_clips[2]});
 		bool initialized = false;
 		while (true) {
 			if (letter_box) {
@@ -324,7 +326,7 @@ public class TutorialController : MonoBehaviour {
 
 		GameObject[] pointers = new GameObject[4];
 
-		GameObject letter_box = CreateLetter (new string[]{text_2});
+		GameObject letter_box = CreateLetter (new string[]{text_2}, new VideoClip[]{video_clips[3]});
 		bool initialized = false;
 		while (true) {
 			if (letter_box) {
@@ -377,7 +379,7 @@ public class TutorialController : MonoBehaviour {
 
 		GameObject[] pointers = new GameObject[4];
 
-		GameObject letter_box = CreateLetter (new string[]{text_2});
+		GameObject letter_box = CreateLetter (new string[]{text_2}, new VideoClip[]{video_clips[4]});
 		bool initialized = false;
 		while (true) {
 			if (letter_box) {
@@ -424,13 +426,12 @@ public class TutorialController : MonoBehaviour {
 		Debug.Log ("Level 5");
 
 		string text_1 = "Shoot a rock to attack your opponent!\n";
-		string text_2 = "Tutorial 5: Attack Your Opponent\n\nYou can attack your opponent by shoot a rock onto him/her.\n" +
-			"Your opponent will be reserrected at the resurrection point shortly.";
+		string text_2 = "Tutorial 5: Attack Your Opponent\n\nYou can attack your opponent by shooting a rock onto him/her.";
 		
 		GameObject[] pointers = new GameObject[4];
 		GameObject[] fake_players = new GameObject[4];
 
-		GameObject letter_box = CreateLetter (new string[]{text_2});
+		GameObject letter_box = CreateLetter (new string[]{text_2}, new VideoClip[]{video_clips[5]});
 		bool initialized = false;
 		while (true) {
 			if (letter_box) {
@@ -486,10 +487,10 @@ public class TutorialController : MonoBehaviour {
 
 		string text_1 = "Go to opponents' gem base\nPress A to steal a gem\n";
 		string text_2 = "Go back to your own gem base\nPress A to drop a gem\n";
-		string text_3 = "Good job!\n\nBe careful for your opponents' moving rocks! Once you get hit, wait for 1s until you are resurrected.";
-		string text_4 = "Tutorial 6: Carry Gem\n\nThe goal for this game is to steal gems from your opponents' base to yours.\nPress A to steal and drop gem.";
+		string text_3 = "Good job!\n\nAnyone hit by a rock will resurrect at the team's resurrection place in 5 second.";
+		string text_4 = "Tutorial 6: Carry Gem\n\nPress A to steal your opponents' gems and drop them in your base.";
 		string text_5 = "Congratulations! You finish all tutorials.\n\nThe team carries more gems in 90s will win.";
-		string text_6 = "Cheet sheet:\nLeft stick: motion control\nButton A: place and push rock, steal and drop gem\nButton B: break your own or your opponents' rocks.";
+		string text_6 = "Cheet sheet:\nLeft stick: motion control\nButton A: place and push rock, steal and drop gem\nButton B: break rocks.";
 
 		diag_box [0].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (-5f, 3f, 0f));
 		diag_box [1].GetComponent<DialogBoxController> ().ChangePosition (new Vector3 (5f, 3f, 0f));
@@ -498,7 +499,7 @@ public class TutorialController : MonoBehaviour {
 
 		GameObject[] pointers = new GameObject[4];
 
-		GameObject letter_box = CreateLetter (new string[]{text_3, text_4});
+		GameObject letter_box = CreateLetter (new string[]{text_3, text_4}, new VideoClip[]{video_clips[7], video_clips[6]});
 		GameObject finish_letter = null;
 		bool check_finish_letter = false;
 		bool initialized = false;
@@ -543,7 +544,7 @@ public class TutorialController : MonoBehaviour {
 			if (CheckEveryPlayer (6)) {
 				if (!check_finish_letter) {
 					check_finish_letter = true;
-					finish_letter = CreateLetter (new string[]{ text_5, text_6 });
+					finish_letter = CreateLetter (new string[]{ text_5, text_6 }, new VideoClip[]{null, null});
 				}
 				if (check_finish_letter && !finish_letter) {
 					SceneManager.LoadScene (0);
@@ -582,9 +583,10 @@ public class TutorialController : MonoBehaviour {
 	}
 
 	// Letter
-	private GameObject CreateLetter(string[] text){
+	private GameObject CreateLetter(string[] text, VideoClip[] clips){
 		GameObject rtn = Instantiate (letter, Vector3.zero, Quaternion.identity);
 		rtn.GetComponent<LetterController> ().SetText (text);
+		rtn.GetComponent<LetterController> ().SetVideo (clips);
 		PlayerFunctionConstraint (false, false, false, -1);
 		return rtn;
 	}
