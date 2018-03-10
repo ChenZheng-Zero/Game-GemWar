@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a01b79b0d7f4ac3982bf009116578b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opponent_rock_removal_duration: 2
+  opponent_rock_removal_duration: 1
 --- !u!212 &212290634045050672
 SpriteRenderer:
   m_ObjectHideFlags: 1

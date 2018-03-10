@@ -189,7 +189,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4249945413297944, guid: b229b2e4485da436fa8636215ea3abd7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4249945413297944, guid: b229b2e4485da436fa8636215ea3abd7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1700,6 +1700,7 @@ MonoBehaviour:
   rock_collectable: {fileID: 1207935961137600, guid: 897e2d95bc1714768820a87416bba0a0,
     type: 2}
   dialog_box: {fileID: 1454093782175908, guid: d553141fa4efb4732b2f63fea25c35dd, type: 2}
+  letter: {fileID: 1329154796435488, guid: 7b7d1895cc9654a0e9c1a1492de7c8fd, type: 2}
   up_pointer: {fileID: 1364145608506654, guid: b1970fcfc25454e4aba316a37c158bb3, type: 2}
   down_pointer: {fileID: 1816452390725042, guid: 2099cff7d110e4daeb2311bd35f8f673,
     type: 2}
@@ -1714,6 +1715,7 @@ MonoBehaviour:
     type: 2}
   red_rock: {fileID: 1762573267520350, guid: 022e95dae64e446e6ab3cc2033ee5862, type: 2}
   blue_rock: {fileID: 1327164681769542, guid: be596ff55134f42bb8b905daf57985ca, type: 2}
+  tick: {fileID: 1954164355007316, guid: 5229b0ccef07847f594820a93e1b0600, type: 2}
   start_level: 0
 --- !u!4 &424234607
 Transform:
@@ -2610,7 +2612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4249945413297944, guid: b229b2e4485da436fa8636215ea3abd7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4249945413297944, guid: b229b2e4485da436fa8636215ea3abd7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6007,7 +6009,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750491654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86ed0edef43e74d799df8ad5a3d98c7b, type: 3}
   m_Name: 
