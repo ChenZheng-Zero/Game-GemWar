@@ -71,6 +71,7 @@ public class RockInteraction : MonoBehaviour {
 	
 	void Update () {
 		if (reborn.GetReborning() || GameController.instance.GetGameOver ()) {
+			removing_opponent_rock = false;
 			return;
 		}
 
@@ -127,7 +128,6 @@ public class RockInteraction : MonoBehaviour {
 		if (removing_opponent_rock) {
 			Vector3 direction = grid_base_movement.GetDirection ();
 			Vector3 offset = GetOffset ();
-
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction + offset);
 
 			if (!collider || !collider.CompareTag (opponent_rock_tag) || collider.transform.position != transform.position + direction + offset) {
