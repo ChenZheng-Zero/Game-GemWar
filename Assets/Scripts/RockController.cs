@@ -38,7 +38,7 @@ public class RockController : MonoBehaviour {
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
 				//Vanishing Code
-				StartCoroutine (BlinkCoroutine ());
+				//StartCoroutine (BlinkCoroutine ());
 			}
 		} 
 	}
@@ -70,7 +70,7 @@ public class RockController : MonoBehaviour {
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
 				//Vanishing Code
-				StartCoroutine (BlinkCoroutine ());
+				//StartCoroutine (BlinkCoroutine ());
 			}
 //		}
 	}
