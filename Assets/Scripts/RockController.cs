@@ -10,11 +10,14 @@ public class RockController : MonoBehaviour {
 	private Vector3 direction = Vector3.zero;
 	private GameObject time_bar = null;
 	private Object rock_collectable_prefab;
+	private Renderer rend;
 
 	public float opponent_rock_removal_duration = 2.0f;
-
+	public float exist_time = 5.0f;
+	public float blink_time = 4.0f;
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+		rend = GetComponent<Renderer> ();
 		rock_collectable_prefab = Resources.Load ("Prefabs/rock_collectable", typeof(GameObject));
 
 		if (tag == "rock_blue") {
@@ -30,12 +33,14 @@ public class RockController : MonoBehaviour {
 		if (direction != Vector3.zero) {
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction * 0.6f);
 
-			if (collider && CheckStopingTag(collider.tag)) {
+			if (collider && CheckStopingTag (collider.tag)) {
 				rb.velocity = Vector3.zero;
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
+				//Vanishing Code
+				StartCoroutine (BlinkCoroutine ());
 			}
-		}
+		} 
 	}
 
 	void OnDestroy() {
@@ -64,6 +69,8 @@ public class RockController : MonoBehaviour {
 				rb.velocity = Vector3.zero;
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
+				//Vanishing Code
+				StartCoroutine (BlinkCoroutine ());
 			}
 //		}
 	}
@@ -113,5 +120,20 @@ public class RockController : MonoBehaviour {
 		if (time_left.transform.localScale.x <= 0.0f) {
 			Destroy (gameObject);
 		}
+
+	}
+
+	private IEnumerator BlinkCoroutine() {
+		yield return new WaitForSeconds(exist_time);
+
+		float end_time = Time.time + blink_time;
+
+		while(Time.time < end_time){
+			rend.enabled = true;
+			yield return new WaitForSeconds(0.2f);
+			rend.enabled = false;
+			yield return new WaitForSeconds(0.2f);
+		}
+		Destroy (gameObject);
 	}
 }
