@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 182136127}
   - component: {fileID: 182136128}
   m_Layer: 0
-  m_Name: cursor_226
+  m_Name: cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,17 +1105,17 @@ Prefab:
     - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.22745098
       objectReference: {fileID: 0}
     - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: m_Color.g
-      value: 0.5448277
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.85490197
       objectReference: {fileID: 0}
     - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
@@ -1439,7 +1439,7 @@ GameObject:
   - component: {fileID: 355552786}
   - component: {fileID: 355552787}
   m_Layer: 0
-  m_Name: cursor_220
+  m_Name: cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 945565900}
   - component: {fileID: 945565901}
   m_Layer: 0
-  m_Name: cursor_232
+  m_Name: cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2813,7 +2813,7 @@ GameObject:
   - component: {fileID: 966991676}
   - component: {fileID: 966991677}
   m_Layer: 0
-  m_Name: cursor_238
+  m_Name: cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

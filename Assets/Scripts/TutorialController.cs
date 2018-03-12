@@ -181,12 +181,14 @@ public class TutorialController : MonoBehaviour {
 		}
 
 		string text_1 = "Stand on the arrow; face right.\n";
+		string text_5 = "Stand on the arrow; face left.\n";
 		string text_2 = "Press A to place the rock.\n";
 
 		string text_3 = "Good Job!\n\nNotice that you can read the number of rocks you have collected from the bar on the top of you.";
 		string text_4 = "Tutorial 2: Place Rock\n\nYou can place a rock on the ground at which you are facing by pressing A.";
 
 		GameObject[] pointers = new GameObject[4];
+		string[] sprite_directions = new string[2];
 
 		GameObject letter_box = CreateLetter (new string[]{ text_3, text_4 }, new VideoClip[]{null, video_clips[1]});
 
@@ -200,17 +202,22 @@ public class TutorialController : MonoBehaviour {
 			if (!initialized) {
 				initialized = true;
 				PlayerFunctionConstraint (false, false, true);
-				InitAllDiagBox (text_1);
-				pointers[0] = Instantiate (right_pointer, new Vector3 (-5f, 2f, 0), Quaternion.identity);
-				pointers[1] = Instantiate (right_pointer, new Vector3 (5f, 2f, 0), Quaternion.identity);
-				pointers[2] = Instantiate (right_pointer, new Vector3 (-5f, -2f, 0), Quaternion.identity);
-				pointers[3] = Instantiate (right_pointer, new Vector3 (5f, -2f, 0), Quaternion.identity);
+				sprite_directions [0] = "player_left";
+				sprite_directions [1] = "player_right";
+				EditDialogBox (diag_box [0], text_5);
+				EditDialogBox (diag_box [1], text_1);
+				EditDialogBox (diag_box [2], text_5);
+				EditDialogBox (diag_box [3], text_1);
+				pointers[0] = Instantiate (left_pointer, new Vector3 (-3f, 2f, 0), Quaternion.identity);
+				pointers[1] = Instantiate (right_pointer, new Vector3 (3f, 2f, 0), Quaternion.identity);
+				pointers[2] = Instantiate (left_pointer, new Vector3 (-3f, -2f, 0), Quaternion.identity);
+				pointers[3] = Instantiate (right_pointer, new Vector3 (3f, -2f, 0), Quaternion.identity);
 			}
 			for (int i = 0; i < 4; ++i) {
 				if (player_progress [i] == 1.0f &&
 					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.3f &&
 					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f){
-					if (players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith ("player_right")) {
+					if (players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith (sprite_directions[i % 2])) {
 						PlayerFunctionConstraint (true, false, true, i);
 						player_progress [i] = 1.5f;
 						EditDialogBox (diag_box [i], text_2);
@@ -221,7 +228,7 @@ public class TutorialController : MonoBehaviour {
 						PlayerFunctionConstraint (false, false, true, i);
 						player_progress [i] = 2.0f;
 						EditDialogBox (diag_box [i], "");
-					} else if (!players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith ("player_right") ||
+					} else if (!players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith (sprite_directions[i % 2]) ||
 						!(Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.3f &&
 							Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f)) {
 						player_progress [i] = 1f;
@@ -250,10 +257,10 @@ public class TutorialController : MonoBehaviour {
 		string text_3 = "Tutorial 3: Push Rock\n\nYou can shoot a rock by pushing it on the side. Press A when you face to the rock.";
 
 		GameObject[] stand_sensor = new GameObject[4];
-		stand_sensor [0] = Instantiate (box_sensor, new Vector3 (-5f, 2f, 0f), Quaternion.identity);
-		stand_sensor [1] = Instantiate (box_sensor, new Vector3 (5f, 2f, 0f), Quaternion.identity);
-		stand_sensor [2] = Instantiate (box_sensor, new Vector3 (-5f, -2f, 0f), Quaternion.identity);
-		stand_sensor [3] = Instantiate (box_sensor, new Vector3 (5f, -2f, 0f), Quaternion.identity);
+		stand_sensor [0] = Instantiate (box_sensor, new Vector3 (-3f, 2f, 0f), Quaternion.identity);
+		stand_sensor [1] = Instantiate (box_sensor, new Vector3 (3f, 2f, 0f), Quaternion.identity);
+		stand_sensor [2] = Instantiate (box_sensor, new Vector3 (-3f, -2f, 0f), Quaternion.identity);
+		stand_sensor [3] = Instantiate (box_sensor, new Vector3 (3f, -2f, 0f), Quaternion.identity);
 		for (int i = 0; i < 4; ++i) {
 			stand_sensor [i].GetComponent<BoxSensorController> ().SetProperty (i, true);
 		}
@@ -261,9 +268,9 @@ public class TutorialController : MonoBehaviour {
 		GameObject[] pointers = new GameObject[4];
 
 		GameObject[] rock_sensor = new GameObject[4];
-		rock_sensor [0] = Instantiate (box_sensor, new Vector3 (-1f, 2f, 0f), Quaternion.identity);
+		rock_sensor [0] = Instantiate (box_sensor, new Vector3 (-8f, 2f, 0f), Quaternion.identity);
 		rock_sensor [1] = Instantiate (box_sensor, new Vector3 (8f, 2f, 0f), Quaternion.identity);
-		rock_sensor [2] = Instantiate (box_sensor, new Vector3 (-1f, -2f, 0f), Quaternion.identity);
+		rock_sensor [2] = Instantiate (box_sensor, new Vector3 (-8f, -2f, 0f), Quaternion.identity);
 		rock_sensor [3] = Instantiate (box_sensor, new Vector3 (8f, -2f, 0f), Quaternion.identity);
 		for (int i = 0; i < 4; ++i) {
 			rock_sensor [i].GetComponent<BoxSensorController> ().SetProperty (i, false);
@@ -281,10 +288,10 @@ public class TutorialController : MonoBehaviour {
 				initialized = true;
 				PlayerFunctionConstraint (false, false, true, -1);
 				InitAllDiagBox (text_1);
-				pointers[0] = Instantiate (right_pointer, new Vector3 (-5f, 2f, 0), Quaternion.identity);
-				pointers[1] = Instantiate (right_pointer, new Vector3 (5f, 2f, 0), Quaternion.identity);
-				pointers[2] = Instantiate (right_pointer, new Vector3 (-5f, -2f, 0), Quaternion.identity);
-				pointers[3] = Instantiate (right_pointer, new Vector3 (5f, -2f, 0), Quaternion.identity);
+				pointers[0] = Instantiate (left_pointer, new Vector3 (-3f, 2f, 0), Quaternion.identity);
+				pointers[1] = Instantiate (right_pointer, new Vector3 (3f, 2f, 0), Quaternion.identity);
+				pointers[2] = Instantiate (left_pointer, new Vector3 (-3f, -2f, 0), Quaternion.identity);
+				pointers[3] = Instantiate (right_pointer, new Vector3 (3f, -2f, 0), Quaternion.identity);
 			}
 			for (int i = 0; i < 4; ++i) {
 				if (player_progress [i] == 2.0f) {
@@ -325,6 +332,12 @@ public class TutorialController : MonoBehaviour {
 		string text_2 = "Tutorial 4: Break Rock(1)\n\n To break your own rock, face to it and press B.";
 
 		GameObject[] pointers = new GameObject[4];
+		Vector3[] rock_positions = new Vector3[4];
+		rock_positions [0] = new Vector3 (-8f, 2f, 0);
+		rock_positions [1] = new Vector3 (8f, 2f, 0);
+		rock_positions [2] = new Vector3 (-8f, -2f, 0);
+		rock_positions [3] = new Vector3 (8f, -2f, 0);
+
 
 		GameObject letter_box = CreateLetter (new string[]{text_2}, new VideoClip[]{video_clips[3]});
 		bool initialized = false;
@@ -336,9 +349,9 @@ public class TutorialController : MonoBehaviour {
 			}
 			if (!initialized) {
 				initialized = true;
-				pointers[0] = Instantiate (right_pointer, new Vector3 (-2f, 2f, 0), Quaternion.identity);
+				pointers[0] = Instantiate (left_pointer, new Vector3 (-7f, 2f, 0), Quaternion.identity);
 				pointers[1] = Instantiate (right_pointer, new Vector3 (7f, 2f, 0), Quaternion.identity);
-				pointers[2] = Instantiate (right_pointer, new Vector3 (-2f, -2f, 0), Quaternion.identity);
+				pointers[2] = Instantiate (left_pointer, new Vector3 (-7f, -2f, 0), Quaternion.identity);
 				pointers[3] = Instantiate (right_pointer, new Vector3 (7f, -2f, 0), Quaternion.identity);
 				InitAllDiagBox (text_1);
 				PlayerFunctionConstraint (true, false, true);
@@ -346,7 +359,7 @@ public class TutorialController : MonoBehaviour {
 			for (int i = 0; i < 4; ++i) {
 				if (player_progress [i] == 3 && 
 					(players [i].GetComponent<RockBarDisplayer> ().GetRockCount() == 1 ||
-						FindCollector(pointers[i].transform.position + Vector3.right))){
+						FindCollector(rock_positions[i]))){
 					player_progress [i] = 4.0f;
 					EditDialogBox (diag_box [i], "");
 					PlayerFunctionConstraint (true, false, true, i);
