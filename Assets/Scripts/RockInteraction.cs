@@ -14,14 +14,14 @@ public class RockInteraction : MonoBehaviour {
 	private InputDevice input_device;
 	private Reborn reborn;
 	private GemInteraction gem_interaction;
+	private BuffController buff_controller;
 	private GridBaseMovement grid_base_movement;
 	private RockBarDisplayer rock_bar_displayer;
-
-	public float rock_speed = 6.0f;
 
 	void Start () {
 		reborn = GetComponent<Reborn> ();
 		gem_interaction = GetComponent<GemInteraction> ();
+		buff_controller = GetComponent<BuffController> ();
 		grid_base_movement = GetComponent<GridBaseMovement> ();
 		rock_bar_displayer = GetComponent<RockBarDisplayer> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
@@ -85,15 +85,12 @@ public class RockInteraction : MonoBehaviour {
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (facing_position);
 
 			if (collider && collider.CompareTag (own_rock_tag)) {
-				collider.GetComponent<Rigidbody> ().velocity = rock_speed * direction;
 				collider.GetComponent<RockController> ().SetMovingDirection (direction);
-			} else if (!rock_bar_displayer.IfRockCountZero () && collider && PublicFunctions.instance.GetTeamNumber(tag) + PublicFunctions.instance.GetTeamNumber(collider.tag) == 3) {
-				rock_bar_displayer.ModifyRockCount (-1);
-				GameObject rock = (GameObject)Instantiate (own_rock_prefab, transform.position + direction + offset, Quaternion.identity);
-				collider.GetComponent<Reborn> ().StartRebornCoroutine ();
-				StartCoroutine (DelayDestroyCoroutine (rock));
-			} else if (!rock_bar_displayer.IfRockCountZero () && !(collider && (collider.CompareTag("base_blue") || collider.CompareTag("wall") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") || collider.CompareTag(opponent_rock_tag) ||
-				collider.CompareTag("reborn_red") || collider.CompareTag("reborn_blue") || PublicFunctions.instance.GetTeamNumber(tag) == PublicFunctions.instance.GetTeamNumber(collider.tag)))) {
+				collider.GetComponent<RockController> ().SetSpeedCoefficient (buff_controller.GetRockSpeedCoefficient ());
+			} else if (!rock_bar_displayer.IfRockCountZero () && 
+				(collider && PublicFunctions.instance.GetTeamNumber(tag) + PublicFunctions.instance.GetTeamNumber(collider.tag) == 3 ||
+				!(collider && (collider.CompareTag("base_blue") || collider.CompareTag("wall") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") || collider.CompareTag(opponent_rock_tag) ||
+				collider.CompareTag("reborn_red") || collider.CompareTag("reborn_blue") || PublicFunctions.instance.GetTeamNumber(tag) == PublicFunctions.instance.GetTeamNumber(collider.tag))))) {
 
 				rock_bar_displayer.ModifyRockCount (-1);
 				Instantiate (own_rock_prefab, facing_position, Quaternion.identity);

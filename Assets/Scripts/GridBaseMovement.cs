@@ -13,21 +13,24 @@ public class GridBaseMovement : MonoBehaviour {
 	private Animator animator;
 	private InputDevice input_device;
 	private Reborn reborn;
+	private BuffController buff_controller;
 	private GemInteraction gem_interaction;
 	private RockInteraction rock_interaction;
 
 	public float movement_speed = 4.0f;
+	public float holding_movement_speed = 2.0f;
+	public float speed_up_ratio = 2.0f;
 	public float input_magnitude_threshold = 0.8f;
 	public float change_direction_threshold = 0.2f;
-	public float holding_movement_speed = 2.0f;
 	public Vector3 initial_direction = Vector3.down;
 
 	void Start () {
 		direction = initial_direction;
 		previous_direction = initial_direction;
 		rb = GetComponent<Rigidbody> ();
-		animator = GetComponent<Animator> ();
 		reborn = GetComponent<Reborn> ();
+		animator = GetComponent<Animator> ();
+		buff_controller = GetComponent<BuffController> ();
 		gem_interaction = GetComponent<GemInteraction> ();
 		rock_interaction = GetComponent<RockInteraction> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
@@ -57,6 +60,17 @@ public class GridBaseMovement : MonoBehaviour {
 		} else {
 			return vertical_input_magnitude;
 		}
+	}
+
+	private float GetSpeed() {
+		float speed;
+		if (gem_interaction.GetHolding ()) {
+			speed = holding_movement_speed;
+		} else {
+			speed = movement_speed;
+		}
+
+		return speed * buff_controller.GetSpeedCoefficient ();
 	}
 
 	private bool CheckObstacle(Vector3 pos) {
@@ -173,12 +187,7 @@ public class GridBaseMovement : MonoBehaviour {
 
 	private IEnumerator MoveCoroutine() {
 		moving = true;
-
-		if (gem_interaction.GetHolding ()) {
-			rb.velocity = holding_movement_speed * direction;
-		} else {
-			rb.velocity = movement_speed * direction;
-		}
+		rb.velocity = GetSpeed () * direction;
 
 		Vector3 origin_velocity = rb.velocity;
 		Vector3 origin_position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), 0.0f);
@@ -213,12 +222,7 @@ public class GridBaseMovement : MonoBehaviour {
 
 	private IEnumerator ChangheDirectionCoroutine(float offset) {
 		change_direction_moving = true;
-
-		if (gem_interaction.GetHolding ()) {
-			rb.velocity = holding_movement_speed * direction;
-		} else {
-			rb.velocity = movement_speed * direction;
-		}
+		rb.velocity = GetSpeed () * direction;
 
 		Vector3 origin_velocity = rb.velocity;
 		Vector3 target_position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), 0.0f);
@@ -233,6 +237,7 @@ public class GridBaseMovement : MonoBehaviour {
 		transform.position = target_position;
 		change_direction_moving = false;
 	}
+
 
 	public Vector3 GetDirection() {
 		return direction;

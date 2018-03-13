@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class RockController : MonoBehaviour {
 
-	private Rigidbody rb;
 	private int team_number;
 	private string opponent_rock_tag;
+	private float speed_coefficient = 1.0f;
 	private Vector3 direction = Vector3.zero;
 	private GameObject time_bar = null;
 	private Object rock_collectable_prefab;
+	private Rigidbody rb;
 	private Renderer rend;
 
-	public float opponent_rock_removal_duration = 2.0f;
+	public float rock_speed = 6.0f;
 	public float exist_time = 5.0f;
 	public float blink_time = 4.0f;
+	public float check_distance = 0.6f;
+	public float opponent_rock_removal_duration = 2.0f;
+
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		rend = GetComponent<Renderer> ();
@@ -31,7 +35,7 @@ public class RockController : MonoBehaviour {
 
 	void Update () {
 		if (direction != Vector3.zero) {
-			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction * 0.6f);
+			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction * check_distance * speed_coefficient);
 
 			if (collider && CheckStopingTag (collider.tag)) {
 				rb.velocity = Vector3.zero;
@@ -60,15 +64,26 @@ public class RockController : MonoBehaviour {
 	void OnTriggerStay(Collider collider) {
 //		if (direction != Vector3.zero) {
 			if (team_number + PublicFunctions.instance.GetTeamNumber (collider.tag) == 3) {
-				collider.GetComponent<Reborn> ().StartRebornCoroutine ();
-				Destroy (gameObject);
+				BuffController collider_buff_controller = collider.GetComponent<BuffController> ();
+				if (collider_buff_controller.GetGuardian ()) {
+					collider_buff_controller.ResetGuardian ();
+				} else {
+					collider.GetComponent<Reborn> ().StartRebornCoroutine ();
+				}
+
+				if (speed_coefficient == 1.0f) {
+					Destroy (gameObject);
+				}
 			} else if (collider.tag == opponent_rock_tag) {
-				Destroy (gameObject);
-				Destroy (collider.gameObject);
-		} else if (CheckStopingTag(collider.tag)) {
+				if (speed_coefficient == 1.0f) {
+					Destroy (gameObject);
+				}
+//				Destroy (collider.gameObject);
+			} else if (CheckStopingTag(collider.tag)) {
+				speed_coefficient = 1.0f;
+				direction = Vector3.zero;
 				rb.velocity = Vector3.zero;
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
-				direction = Vector3.zero;
 				//Vanishing Code
 				//StartCoroutine (BlinkCoroutine ());
 			}
@@ -77,6 +92,11 @@ public class RockController : MonoBehaviour {
 
 	public void SetMovingDirection(Vector3 _direction) {
 		direction = _direction;
+	}
+
+	public void SetSpeedCoefficient(float coefficient) {
+		speed_coefficient = coefficient;
+		rb.velocity = direction * rock_speed * speed_coefficient;
 	}
 
 	public void RemoveByPlayer(GameObject player) {

@@ -24,6 +24,9 @@ TagManager:
   - gem_red
   - gem_blue
   - gem
+  - speed_up_buff
+  - guardian_buff
+  - super_rock_buff
   layers:
   - Default
   - TransparentFX

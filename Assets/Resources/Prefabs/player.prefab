@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 114864076077677012}
   - component: {fileID: 114069916371330432}
   - component: {fileID: 114473651632642024}
+  - component: {fileID: 114274725119465756}
   m_Layer: 0
   m_Name: player
   m_TagString: player1
@@ -256,6 +257,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fea4501e4c814f90a9c67ff7a5b909f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114274725119465756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896405745152226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5275d82564af442c5be7bd30af8fc163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed_up_duration: 5
+  speed_up_ratio: 2
+  guardian_duration: 5
+  super_rock_duration: 5
+  super_rock_speed_ratio: 1.6
 --- !u!114 &114430517242728906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,9 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement_speed: 4
-  input_magnitude_threshold: 0.8
-  change_direction_threshold: 0.15
   holding_movement_speed: 2
+  speed_up_ratio: 2
+  input_magnitude_threshold: 0.75
+  change_direction_threshold: 0.15
   initial_direction: {x: 0, y: -1, z: 0}
 --- !u!114 &114473651632642024
 MonoBehaviour:
@@ -295,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a2eb0ae2c44e50839300b86426810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock_speed: 10
 --- !u!114 &114764088687936442
 MonoBehaviour:
   m_ObjectHideFlags: 1

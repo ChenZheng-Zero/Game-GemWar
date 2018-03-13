@@ -6,7 +6,6 @@ public class Reborn : MonoBehaviour {
 
 	private bool reborning = false;
 	private Vector3 reborn_position;
-	private GameObject cursor;
 	private GameObject rock_bar;
 	private Rigidbody rb;
 	private BoxCollider bc;
@@ -27,8 +26,6 @@ public class Reborn : MonoBehaviour {
 		foreach (Transform child in transform) {
 			if (child.name == "rock_bar") {
 				rock_bar = child.gameObject;
-			} else if (child.name == "cursor") {
-				cursor = child.gameObject;
 			}
 		}
 	}
@@ -41,7 +38,6 @@ public class Reborn : MonoBehaviour {
 		reborning = true;
 		bc.enabled = false;
 		sr.enabled = false;
-		cursor.SetActive (false);
 		rock_bar.SetActive (false);
 
 		if (gem_interaction.GetHolding ()) {
@@ -53,7 +49,6 @@ public class Reborn : MonoBehaviour {
 		transform.position = reborn_position;
 
 		rock_bar.SetActive (true);
-		cursor.SetActive (true);
 		sr.enabled = true;
 		bc.enabled = true;
 		reborning = false;
