@@ -184,13 +184,12 @@ public class TutorialController : MonoBehaviour {
 		string text_5 = "Stand on the arrow; face left.\n";
 		string text_2 = "Press A to place the rock.\n";
 
-		string text_3 = "Good Job!\n\nNotice that you can read the number of rocks you have collected from the bar on the top of you.";
+		string text_3 = "Good Job!\nYou can collect at most 3 rocks. The yellow bar shows the number of rocks you have (now: 1).";
 		string text_4 = "Tutorial 2: Place Rock\n\nYou can place a rock on the ground at which you are facing by pressing A.";
 
 		GameObject[] pointers = new GameObject[4];
-		string[] sprite_directions = new string[2];
 
-		GameObject letter_box = CreateLetter (new string[]{ text_3, text_4 }, new VideoClip[]{null, video_clips[1]});
+		GameObject letter_box = CreateLetter (new string[]{ text_3, text_4 }, new VideoClip[]{video_clips[8], video_clips[1]});
 
 		bool initialized = false;
 		while (true) {
@@ -202,8 +201,6 @@ public class TutorialController : MonoBehaviour {
 			if (!initialized) {
 				initialized = true;
 				PlayerFunctionConstraint (false, false, true);
-				sprite_directions [0] = "player_left";
-				sprite_directions [1] = "player_right";
 				EditDialogBox (diag_box [0], text_5);
 				EditDialogBox (diag_box [1], text_1);
 				EditDialogBox (diag_box [2], text_5);
@@ -217,20 +214,25 @@ public class TutorialController : MonoBehaviour {
 				if (player_progress [i] == 1.0f &&
 					Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.3f &&
 					Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f){
-					if (players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith (sprite_directions[i % 2])) {
+					string sprite_name = players [i].GetComponent<SpriteRenderer> ().sprite.name;
+
+					if (((i == 0 || i == 2) && (sprite_name.EndsWith("_9") || sprite_name.EndsWith("_10") || sprite_name.EndsWith("_11"))) ||
+						((i == 1 || i == 3) && (sprite_name.EndsWith("_6") || sprite_name.EndsWith("_7") || sprite_name.EndsWith("_8")))) {
 						PlayerFunctionConstraint (true, false, true, i);
 						player_progress [i] = 1.5f;
 						EditDialogBox (diag_box [i], text_2);
 					} 
 				}  
 				if (player_progress [i] == 1.5f) {
+					string sprite_name = players [i].GetComponent<SpriteRenderer> ().sprite.name;
 					if (players [i].GetComponent<RockBarDisplayer> ().IfRockCountZero ()) {
 						PlayerFunctionConstraint (false, false, true, i);
 						player_progress [i] = 2.0f;
 						EditDialogBox (diag_box [i], "");
-					} else if (!players [i].GetComponent<SpriteRenderer> ().sprite.name.StartsWith (sprite_directions[i % 2]) ||
+					} else if (!(((i == 0 || i == 2) && (sprite_name.EndsWith("_9") || sprite_name.EndsWith("_10") || sprite_name.EndsWith("_11"))) ||
+						((i == 1 || i == 3) && (sprite_name.EndsWith("_6") || sprite_name.EndsWith("_7") || sprite_name.EndsWith("_8"))) ||
 						!(Mathf.Abs (players [i].transform.position.x - pointers [i].transform.position.x) < 0.3f &&
-							Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f)) {
+							Mathf.Abs (players [i].transform.position.y - pointers [i].transform.position.y) < 0.3f))) {
 						player_progress [i] = 1f;
 						PlayerFunctionConstraint (false, false, true, i);
 						EditDialogBox (diag_box [i], text_1);
