@@ -6,7 +6,6 @@ public class BaseScoreController: MonoBehaviour {
 
 	private string own_color;
 	private int current_score = 5;
-	private int potential_losing_score = 0;
 	private List<GameObject> scores = new List<GameObject> ();
 
 	void Start () {
@@ -27,28 +26,39 @@ public class BaseScoreController: MonoBehaviour {
 
 	public void AddScore(string color) {
 		++current_score;
+		scores [current_score - 1].GetComponent<SpriteRenderer> ().enabled = true;
 
-		if (color != own_color) {
-			if (own_color == "blue") {
-				ScoreDisplayer.instance.ModifyBlueScore (1);
-				ScoreDisplayer.instance.ModifyRedScore (-1);
-			} else {
-				ScoreDisplayer.instance.ModifyBlueScore (-1);
-				ScoreDisplayer.instance.ModifyRedScore (1);
-			}
+//		if (color != own_color) {
+//			if (own_color == "blue") {
+//				ScoreDisplayer.instance.ModifyBlueScore (1);
+//				ScoreDisplayer.instance.ModifyRedScore (-1);
+//			} else {
+//				ScoreDisplayer.instance.ModifyBlueScore (-1);
+//				ScoreDisplayer.instance.ModifyRedScore (1);
+//			}
+//		}
+
+		if (own_color == "blue" && color == "blue") {
+			ScoreDisplayer.instance.BlueAvoidPotentialLose ();
+		} else if (own_color == "blue" && color == "red") {
+			ScoreDisplayer.instance.BlueWinScore ();
+		} else if (own_color == "red" && color == "blue") {
+			ScoreDisplayer.instance.RedWinScore ();
+		} else {
+			ScoreDisplayer.instance.RedAvoidPotentialLose ();
 		}
 
-		scores [current_score - 1].GetComponent<SpriteRenderer> ().enabled = true;
 	}
-
-//	public void PotentialLoseScore() {
-//		++potential_losing_score;
-//	}
 
 	public void LoseScore() {
 		--current_score;
-//		--potential_losing_score;
 		scores [current_score].GetComponent<SpriteRenderer> ().enabled = false;
+
+		if (own_color == "blue") {
+			ScoreDisplayer.instance.BluePotentialLoseScore ();
+		} else {
+			ScoreDisplayer.instance.RedPotentialLoseScore ();
+		}
 	}
 
 

@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			instance = this;
 		}
-		Screen.SetResolution (1920, 1080, true);
+		Screen.SetResolution (1920, 1200, true);
 	}
 	
 	void Update () {
