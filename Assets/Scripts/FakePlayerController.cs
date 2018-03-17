@@ -18,6 +18,7 @@ public class FakePlayerController : MonoBehaviour {
 		if (other.CompareTag ("rock_red") || other.CompareTag ("rock_blue")) {
 			is_alive = false;
 			Destroy (other.gameObject);
+			Destroy (gameObject);
 		}
 	}
 
