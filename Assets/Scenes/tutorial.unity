@@ -1778,6 +1778,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4776710241814858, guid: 959cf628aa92c48c1bfe84eb74b75ad0,
     type: 2}
   m_PrefabInternal: {fileID: 288410081}
+--- !u!1 &298965843 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1953935691100778, guid: de9ce0f91a9f849a5a36f4fbaa5797bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 940969494}
 --- !u!1001 &304905062
 Prefab:
   m_ObjectHideFlags: 0
@@ -2713,6 +2718,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: ccc941af72572483f94d2f0a7c504fa2, type: 3}
   - {fileID: 32900000, guid: f62860c0216ef49e0b33c0c807a6796b, type: 3}
   - {fileID: 32900000, guid: 1efb286c628674a089eb95006373c639, type: 3}
+  - {fileID: 32900000, guid: 40043f73403f6442fb122756503f3df8, type: 3}
   start_level: 0
 --- !u!4 &424234607
 Transform:
@@ -5109,7 +5115,7 @@ Prefab:
         type: 2}
       propertyPath: reborn_place
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 298965843}
     - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: m_Color.r
@@ -5251,7 +5257,7 @@ Prefab:
         type: 2}
       propertyPath: reborn_place
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1936166913}
     - target: {fileID: 1896405745152226, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
       propertyPath: m_Name
       value: player1
@@ -8962,7 +8968,7 @@ Prefab:
         type: 2}
       propertyPath: reborn_place
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 298965843}
     - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: m_Color.r
@@ -13337,6 +13343,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4776710241814858, guid: 959cf628aa92c48c1bfe84eb74b75ad0,
     type: 2}
   m_PrefabInternal: {fileID: 1935460941}
+--- !u!1 &1936166913 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1091471369982324, guid: f53ef9c8327bd45cbbcc16cceb4dbae2,
+    type: 2}
+  m_PrefabInternal: {fileID: 2044769593}
 --- !u!1001 &1944257826
 Prefab:
   m_ObjectHideFlags: 0
@@ -13467,7 +13478,7 @@ Prefab:
         type: 2}
       propertyPath: reborn_place
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1936166913}
     - target: {fileID: 1896405745152226, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
       propertyPath: m_IsActive
       value: 1
