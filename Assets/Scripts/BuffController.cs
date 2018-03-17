@@ -16,13 +16,8 @@ public class BuffController : MonoBehaviour {
 	public float super_rock_duration = 5.0f;
 	public float super_rock_speed_ratio = 1.5f;
 
-
 	void Start () {
 		shield_prefab = Resources.Load ("Prefabs/shield", typeof(GameObject));
-	}
-
-	void Update () {
-		
 	}
 
 	// Speed Up

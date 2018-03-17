@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
 	private bool game_over = false;
 	public static GameController instance;
 
-	void Start () {
+	void Awake () {
 		if (instance != null && instance != this) {
 			Destroy (this);
 		} else {
