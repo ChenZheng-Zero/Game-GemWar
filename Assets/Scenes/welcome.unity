@@ -730,8 +730,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ed0edef43e74d799df8ad5a3d98c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blue_score_text: {fileID: 0}
-  red_score_text: {fileID: 0}
+  shake_interval: 0.1
+  max_shake_degree: 5
+  grow_and_shrink_duration: 0.5
+  max_scale: 1.5
+  score_bar: {fileID: 0}
 --- !u!114 &717340804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,7 +1748,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1572747625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: -6}
+  m_LocalPosition: {x: 0, y: 1.4, z: -6.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1706890048}
