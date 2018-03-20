@@ -65,11 +65,11 @@ public class BuffController : MonoBehaviour {
 			shield = (GameObject)Instantiate (shield_prefab, transform.position, Quaternion.identity);
 			shield.transform.parent = transform;
 		}
-		StartCoroutine (GuardianCoroutine ());
+//		StartCoroutine (GuardianCoroutine ());
 	}
 
 	public bool GetGuardian() {
-		if (guardian > 0) {
+		if (shield) {
 			return true;
 		} else {
 			return false;
@@ -81,7 +81,7 @@ public class BuffController : MonoBehaviour {
 			Destroy (shield);
 			shield = null;
 		}
-		guardian = 0;
+//		guardian = 0;
 	}
 
 	// Super Rock
