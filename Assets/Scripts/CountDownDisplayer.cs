@@ -7,22 +7,22 @@ public class CountDownDisplayer : MonoBehaviour {
 
 	private int time_left;
 	private Text text;
-	private Vector3 original_position;
-	private Vector3 central_position;
 	private Text time_alert_time;
 	private Text time_alert_text;
 	private bool alerting = false;
+	private bool warning = false;
 
 	public int total_seconds = 99;
 	public float time_alert_stay_time = 1.0f;
 	public float time_alert_fade_time = 1.0f;
+	public float warning_max_alpha = 0.3f;
+	public float warning_interval = 1.0f;
 	public GameObject time_alert;
+	public RawImage warning_panel;
 
 	void Start () {
 		time_left = total_seconds;
 		text = GetComponent<Text> ();
-		original_position = gameObject.GetComponent<RectTransform> ().localPosition;
-		central_position = new Vector3 (0f, -720.7f, 0);
 
 		time_alert_time = time_alert.transform.GetChild (0).GetComponent<Text> ();
 		time_alert_text = time_alert.transform.GetChild (1).GetComponent<Text> ();
@@ -32,21 +32,44 @@ public class CountDownDisplayer : MonoBehaviour {
 
 	void Update () {
 		text.text = time_left.ToString ();
-//		if (time_left <= 10 || time_left % 15 == 0 || time_left % 15 == 1) {
-//			gameObject.GetComponent<RectTransform> ().localPosition = central_position;
-//		} else {
-//			gameObject.GetComponent<RectTransform> ().localPosition = original_position;
-//		}
 
 		if ((time_left == 60 || time_left == 30 || time_left == 10) && !alerting) {
 			StartCoroutine (TimeAlertCoroutine (time_left));
 		}
 
 		if (time_left <= 10) {
-			text.color = Color.red;
+			if (!warning) {
+				StartCoroutine (WarningCoroutine ());
+				text.color = Color.red;
+			}
 		} else {
 			text.color = Color.white;
 		}
+	}
+
+	private IEnumerator WarningCoroutine() {
+		warning = true;
+		Color color = warning_panel.color;
+		Debug.Log (color);
+
+		while (time_left != 0) {
+			for (float t = 0.0f; t < warning_interval; t += Time.deltaTime) {
+				color.a = warning_max_alpha * t / warning_interval;
+				warning_panel.color = color;
+				yield return null;
+			}
+
+			for (float t = 0.0f; t < warning_interval; t += Time.deltaTime) {
+				color.a = warning_max_alpha * (1 - t / warning_interval);
+				warning_panel.color = color;
+				yield return null;
+			}
+		}
+
+		color.a = 0.0f;
+		warning_panel.color = color;
+
+		warning = false;
 	}
 
 	private IEnumerator TimeAlertCoroutine(int time_left) {
