@@ -21,14 +21,10 @@ public class WinningTextDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void ShowWinningText() {
+	public void ShowWinningText(int blue_score, int red_score) {
 		string winning_text;
-		int blue_score = ScoreDisplayer.instance.GetBlueScore ();
-		int red_score = ScoreDisplayer.instance.GetRedScore ();
 
-		if (blue_score == red_score) {
-			winning_text = "~ Even ~";
-		} else if (blue_score > red_score) {
+		if (blue_score > red_score) {
 			winning_text = "Team Blue Win!!!";
 		} else {
 			winning_text = "Team Red Win!!!";

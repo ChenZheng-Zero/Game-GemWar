@@ -29,8 +29,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void SetGameOver() {
+		int blue_score = ScoreDisplayer.instance.GetBlueScore ();
+		int red_score = ScoreDisplayer.instance.GetRedScore ();
+
+		if (blue_score == red_score) {
+			SceneManager.LoadSceneAsync ("sudden_death");
+		}
 		game_over = true;
-		WinningTextDisplayer.instance.ShowWinningText ();
+		WinningTextDisplayer.instance.ShowWinningText (blue_score, red_score);
 	}
 
 	public bool GetGameOver() {
