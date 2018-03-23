@@ -40,7 +40,7 @@ public class SuddenDeathController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (sudden_death_mode) {
-			if (CheckHoldingStatus () == true) {
+			if (CheckHoldingStatus () == true || text.enabled == true) {
 				if (!warning) {
 					warning = true;
 					StartCoroutine (WarningCoroutine ());
@@ -71,7 +71,7 @@ public class SuddenDeathController : MonoBehaviour {
 		warning = true;
 		text.text = "Sudden Death Mode";
 		StartCoroutine (WarningCoroutine());
-		yield return new WaitForSeconds (5f);
+		yield return new WaitForSeconds (3f);
 		text.enabled = false;
 		warning = false;
 		EnablePlayers ();
@@ -79,10 +79,8 @@ public class SuddenDeathController : MonoBehaviour {
 
 	private IEnumerator WarningCoroutine() {
 		Color color = warning_panel.color;
-		Debug.Log (color);
 
 		while (warning) {
-			Debug.Log ("Warning");
 			for (float t = 0.0f; t < warning_interval; t += Time.deltaTime) {
 				color.a = warning_max_alpha * t / warning_interval;
 				warning_panel.color = color;

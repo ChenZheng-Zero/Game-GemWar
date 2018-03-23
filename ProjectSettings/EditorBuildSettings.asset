@@ -14,3 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/main.unity
     guid: f17acafd75ca34ec5899e1dec9375004
+  - enabled: 1
+    path: Assets/Scenes/sudden_death.unity
+    guid: 457514f2d210942b3afa14fad291b1f9

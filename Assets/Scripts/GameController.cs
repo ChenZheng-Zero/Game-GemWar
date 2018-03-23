@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 		if (game_over) {
 			for (int i = 0; i < 4; ++i) {
 				if (InputManager.Devices [i].Action3) {
-					SceneManager.LoadSceneAsync (SceneManager.GetActiveScene ().buildIndex);
+					SceneManager.LoadSceneAsync ("main");
 				}
 			}
 		}
@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour {
 		int red_score = ScoreDisplayer.instance.GetRedScore ();
 
 		if (blue_score == red_score) {
+			Debug.Log ("Even");
 			SceneManager.LoadSceneAsync ("sudden_death");
 		}
 		game_over = true;
