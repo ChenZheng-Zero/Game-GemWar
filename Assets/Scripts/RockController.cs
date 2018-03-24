@@ -12,6 +12,7 @@ public class RockController : MonoBehaviour {
 	private Object rock_collectable_prefab;
 	private Rigidbody rb;
 	private Renderer rend;
+	private GameObject shot_by = null;
 
 	public float rock_speed = 6.0f;
 	public float exist_time = 5.0f;
@@ -68,6 +69,9 @@ public class RockController : MonoBehaviour {
 				if (collider_buff_controller.GetGuardian ()) {
 					collider_buff_controller.ResetGuardian ();
 				} else {
+					if (shot_by) {
+						shot_by.GetComponent<PlayerDataController> ().AddKill ();
+					}
 					collider.GetComponent<Reborn> ().StartRebornCoroutine ();
 				}
 
@@ -88,6 +92,10 @@ public class RockController : MonoBehaviour {
 				//StartCoroutine (BlinkCoroutine ());
 			}
 //		}
+	}
+
+	public void SetPlayer(GameObject player) {
+		shot_by = player;
 	}
 
 	public void SetMovingDirection(Vector3 _direction) {

@@ -13,12 +13,14 @@ public class BaseInteraction : MonoBehaviour {
 	private Reborn reborn;
 	private GemInteraction gem_interaction;
 	private GridBaseMovement grid_base_movement;
+	private PlayerDataController player_data_controller;
 
 	void Start () {
 		reborn = GetComponent<Reborn> ();
 		gem_interaction = GetComponent<GemInteraction> ();
 		grid_base_movement = GetComponent <GridBaseMovement> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
+		player_data_controller = GetComponent<PlayerDataController> ();
 
 		string own_color =  GetComponent<PlayerControl> ().GetOwnColor ();
 		string opponent_color =  GetComponent<PlayerControl> ().GetOpponentColor ();
@@ -34,6 +36,7 @@ public class BaseInteraction : MonoBehaviour {
 			if (gem_interaction.GetHolding ()) {
 				collider.GetComponent<BaseScoreController> ().AddScore (gem_interaction.GetHoldingGemColor ());
 				gem_interaction.Remove ();
+				player_data_controller.AddScore ();
 			}
 			return true;
 		} else if (collider && collider.tag == opponent_base_tag) {
