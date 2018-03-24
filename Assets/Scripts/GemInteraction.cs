@@ -26,7 +26,6 @@ public class GemInteraction : MonoBehaviour {
 
 		if (input_device.Action1 && !holding) {
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + grid_base_movement.GetDirection ());
-			Debug.Log (collider.tag);
 			if (collider && (collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red"))) {
 				collider.GetComponent<BoxCollider> ().enabled = false;
 				collider.transform.position = transform.position + Vector3.up * 0.8f;

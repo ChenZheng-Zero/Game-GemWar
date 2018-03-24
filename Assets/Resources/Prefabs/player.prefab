@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 114069916371330432}
   - component: {fileID: 114473651632642024}
   - component: {fileID: 114274725119465756}
+  - component: {fileID: 114228022485943008}
   m_Layer: 0
   m_Name: player
   m_TagString: player1
@@ -257,6 +258,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fea4501e4c814f90a9c67ff7a5b909f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114228022485943008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896405745152226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ade4df3a4134f68a3558fa41587fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114274725119465756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -348,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reborn_duration: 5
   reborn_place: {fileID: 0}
+  reborn_UI: {fileID: 0}
 --- !u!114 &114949160736633374
 MonoBehaviour:
   m_ObjectHideFlags: 1

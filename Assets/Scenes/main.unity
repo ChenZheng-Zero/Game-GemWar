@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.38073993, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2352,6 +2352,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 87030dce9c41b471dbebec300fa3a977, type: 2}
+    - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: reborn_UI
+      value: 
+      objectReference: {fileID: 874501793}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
@@ -3114,6 +3119,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: reborn_UI
+      value: 
+      objectReference: {fileID: 477403872}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
@@ -7747,6 +7757,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5641808c5f3444d3e813514bb3119f27, type: 2}
+    - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: reborn_UI
+      value: 
+      objectReference: {fileID: 1591910371}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
@@ -11735,6 +11750,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: effd4c5d5e3b846bfb37594ac1afa1c1, type: 2}
+    - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: reborn_UI
+      value: 
+      objectReference: {fileID: 1669472511}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
