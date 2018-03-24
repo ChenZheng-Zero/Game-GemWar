@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Reborn : MonoBehaviour {
 
@@ -8,18 +9,23 @@ public class Reborn : MonoBehaviour {
 	private Vector3 reborn_position;
 	private GameObject rock_bar;
 	private Rigidbody rb;
+	private Text time_left;
 	private BoxCollider bc;
 	private SpriteRenderer sr;
 	private GemInteraction gem_interaction;
+	private PlayerDataController player_data_controller;
 
 	public float reborn_duration = 5.0f;
 	public GameObject reborn_place;
+	public GameObject reborn_UI;
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		bc = GetComponent<BoxCollider> ();
 		sr = GetComponent<SpriteRenderer> ();
+		time_left = reborn_UI.GetComponent<Text> ();
 		gem_interaction = GetComponent<GemInteraction> ();
+		player_data_controller = GetComponent<PlayerDataController> ();
 
 		reborn_position = reborn_place.transform.position;
 
@@ -31,6 +37,7 @@ public class Reborn : MonoBehaviour {
 	}
 	
 	public void StartRebornCoroutine() {
+		player_data_controller.AddDeath ();
 		StartCoroutine (RebornCoroutine ());
 	}
 
@@ -45,7 +52,15 @@ public class Reborn : MonoBehaviour {
 		}
 
 		rb.velocity = Vector3.zero;
-		yield return new WaitForSeconds (reborn_duration);
+
+		time_left.text = ": " + reborn_duration.ToString ();
+		reborn_UI.SetActive (true);
+		for (float t = 0.0f; t < reborn_duration; t += Time.deltaTime) {
+			time_left.text = ": " + Mathf.Round(reborn_duration - t).ToString ();
+			yield return null;
+		}
+		reborn_UI.SetActive (false);
+
 		transform.position = reborn_position;
 
 		rock_bar.SetActive (true);

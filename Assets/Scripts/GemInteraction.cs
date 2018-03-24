@@ -10,11 +10,13 @@ public class GemInteraction : MonoBehaviour {
 	private InputDevice input_device;
 	private Reborn reborn;
 	private GridBaseMovement grid_base_movement;
+	private PlayerDataController player_data_controller;
 
 	void Start () {
 		reborn = GetComponent<Reborn> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
 		grid_base_movement = GetComponent<GridBaseMovement> ();
+		player_data_controller = GetComponent<PlayerDataController> ();
 	}
 
 	void Update () {
@@ -25,11 +27,9 @@ public class GemInteraction : MonoBehaviour {
 		if (input_device.Action1 && !holding) {
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + grid_base_movement.GetDirection ());
 			if (collider && (collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red"))) {
-				holding = true;
-				gem = collider.gameObject;
-				gem.GetComponent<BoxCollider> ().enabled = false;
-				gem.transform.position = transform.position + Vector3.up * 0.8f;
-				gem.transform.parent = transform;
+				collider.GetComponent<BoxCollider> ().enabled = false;
+				collider.transform.position = transform.position + Vector3.up * 0.8f;
+				Hold (collider.gameObject);
 			}
 		}
 	}
@@ -38,6 +38,7 @@ public class GemInteraction : MonoBehaviour {
 		holding = true;
 		gem = _gem;
 		gem.transform.parent = transform;
+		player_data_controller.AddGemPickUp ();
 	}
 
 	public void Remove() {

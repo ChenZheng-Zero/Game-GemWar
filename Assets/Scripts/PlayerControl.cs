@@ -13,7 +13,6 @@ public class PlayerControl : MonoBehaviour {
 	void Awake () {
 		int player_number = tag[6] - '0';
 		int team_number = (player_number + 1) / 2;
-//		int team_number = player_number;
 
 		if (team_number == 1) {
 			own_color = "blue";
@@ -23,10 +22,6 @@ public class PlayerControl : MonoBehaviour {
 			opponent_color = "blue";
 		}
 		input_device = InputManager.Devices [player_number - 1];
-	}
-
-	void Update () {
-		
 	}
 
 	public string GetOwnColor() {
