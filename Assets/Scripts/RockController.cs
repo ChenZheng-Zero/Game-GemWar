@@ -6,19 +6,23 @@ public class RockController : MonoBehaviour {
 
 	private int team_number;
 	private string opponent_rock_tag;
-	private float speed_coefficient = 1.0f;
 	private Vector3 direction = Vector3.zero;
 	private GameObject time_bar = null;
 	private Object rock_collectable_prefab;
 	private Rigidbody rb;
 	private Renderer rend;
 	private GameObject shot_by = null;
+	private bool horizontal_bouncing = false;
+	private bool vertical_bouncing = false;
 
 	public float rock_speed = 6.0f;
 	public float exist_time = 5.0f;
 	public float blink_time = 4.0f;
 	public float check_distance = 0.6f;
+	public float speed_coefficient = 1.0f;
 	public float opponent_rock_removal_duration = 2.0f;
+	public AnimationCurve bounce_curve;
+	public float curve_speed_coefficient = 2.0f;
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -79,7 +83,7 @@ public class RockController : MonoBehaviour {
 					Destroy (gameObject);
 				}
 			} else if (collider.tag == opponent_rock_tag) {
-				if (speed_coefficient == 1.0f) {
+				if (speed_coefficient == 1.0f || direction == Vector3.zero) {
 					Destroy (gameObject);
 				}
 //				Destroy (collider.gameObject);
@@ -100,11 +104,12 @@ public class RockController : MonoBehaviour {
 
 	public void SetMovingDirection(Vector3 _direction) {
 		direction = _direction;
-	}
-
-	public void SetSpeedCoefficient(float coefficient) {
-		speed_coefficient = coefficient;
 		rb.velocity = direction * rock_speed * speed_coefficient;
+		if ((direction == Vector3.up || direction == Vector3.down) && !vertical_bouncing) {
+			StartCoroutine (VerticalBounceCoroutine ());
+		} else if ((direction == Vector3.left || direction == Vector3.right) && !horizontal_bouncing) {
+			StartCoroutine (HorizontalBounceCoroutine ());
+		}
 	}
 
 	public void RemoveByPlayer(GameObject player) {
@@ -163,5 +168,45 @@ public class RockController : MonoBehaviour {
 			yield return new WaitForSeconds(0.2f);
 		}
 		Destroy (gameObject);
+	}
+
+	private IEnumerator HorizontalBounceCoroutine() {
+		horizontal_bouncing = true;
+
+		float origin_scale_x = transform.localScale.x;
+		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime * curve_speed_coefficient) {
+			transform.localScale = new Vector3(
+				origin_scale_x * bounce_curve.Evaluate (t), 
+				transform.localScale.y,
+				transform.localScale.z);
+			yield return null;
+		}
+
+		transform.localScale = new Vector3(
+			origin_scale_x, 
+			transform.localScale.y,
+			transform.localScale.z);
+
+		horizontal_bouncing = false;
+	}
+
+	private IEnumerator VerticalBounceCoroutine() {
+		vertical_bouncing = true;
+
+		float origin_scale_y = transform.localScale.y;
+		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime * curve_speed_coefficient) {
+			transform.localScale = new Vector3(
+				transform.localScale.x, 
+				origin_scale_y * bounce_curve.Evaluate (t),
+				transform.localScale.z);
+			yield return null;
+		}
+
+		transform.localScale = new Vector3(
+			transform.localScale.x, 
+			origin_scale_y,
+			transform.localScale.z);
+
+		vertical_bouncing = false;
 	}
 }

@@ -7,6 +7,9 @@ public class GridBaseMovement : MonoBehaviour {
 
 	private bool moving = false;
 	private bool change_direction_moving = false;
+	private int team_number;
+	private string opponent_reborn_tag;
+	private Vector3 occupied_grid;
 	private Vector3 direction;
 	private Vector3 previous_direction;
 	private Rigidbody rb;
@@ -27,6 +30,8 @@ public class GridBaseMovement : MonoBehaviour {
 	void Start () {
 		direction = initial_direction;
 		previous_direction = initial_direction;
+		team_number = PublicFunctions.instance.GetTeamNumber (tag);
+		opponent_reborn_tag = "reborn_" + GetComponent<PlayerControl> ().GetOpponentColor ();
 		rb = GetComponent<Rigidbody> ();
 		reborn = GetComponent<Reborn> ();
 		animator = GetComponent<Animator> ();
@@ -34,6 +39,9 @@ public class GridBaseMovement : MonoBehaviour {
 		gem_interaction = GetComponent<GemInteraction> ();
 		rock_interaction = GetComponent<RockInteraction> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
+
+		occupied_grid = transform.position;
+		GridController.instance.TeamOccupyGrid (occupied_grid, team_number);
 	}
 
 	private Vector3 GetInputDirection() {
@@ -76,8 +84,10 @@ public class GridBaseMovement : MonoBehaviour {
 	private bool CheckObstacle(Vector3 pos) {
 		Collider collider = PublicFunctions.instance.FindObjectOnPosition (pos);
 
-		if (collider && (collider.CompareTag("base_blue") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") ||
-			collider.CompareTag("wall") || collider.CompareTag("rock_blue") || collider.CompareTag("rock_red"))) {
+		if (collider && (collider.CompareTag ("base_blue") || collider.CompareTag ("base_red") || collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") ||
+			collider.CompareTag ("wall") || collider.CompareTag ("rock_blue") || collider.CompareTag ("rock_red") || collider.CompareTag ("fake_player") || collider.CompareTag(opponent_reborn_tag) || 
+			team_number + PublicFunctions.instance.GetTeamNumber (collider.tag) == 3)) {
+
 			return true;
 		} else {
 			return false;
@@ -175,13 +185,13 @@ public class GridBaseMovement : MonoBehaviour {
 
 			animator.speed = 1.0f;
 
+			if (CheckObstacle (transform.position + direction) || 
+				team_number + GridController.instance.GetGridTeam(transform.position + direction) == 3) {
 
-			if (CheckObstacle (transform.position + direction)) {
 				rb.velocity = Vector3.zero;
-				return;
+			} else {
+				StartCoroutine (MoveCoroutine ());
 			}
-
-			StartCoroutine (MoveCoroutine ());
 		}
 	}
 
@@ -191,7 +201,9 @@ public class GridBaseMovement : MonoBehaviour {
 
 		Vector3 origin_velocity = rb.velocity;
 		Vector3 origin_position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), 0.0f);
-		Vector3 moving_direction = direction;
+		Vector3 target_position = origin_position + direction;
+
+		ModifyOccupiedGrid (target_position);
 
 		bool blocked = false;
 		bool stop = false;
@@ -200,7 +212,7 @@ public class GridBaseMovement : MonoBehaviour {
 		for (float t = 0.0f; t < moving_time; t += Time.deltaTime) {
 			rb.velocity = origin_velocity;
 			yield return null;
-			if (CheckObstacle (origin_position + moving_direction)) {
+			if (CheckObstacle (target_position)) {
 				blocked = true;
 				break;
 			} else if (change_direction_moving) {
@@ -214,7 +226,11 @@ public class GridBaseMovement : MonoBehaviour {
 		if (blocked) {
 			transform.position = origin_position;
 		} else if (!stop) {
-			transform.position = origin_position + moving_direction;
+			transform.position = target_position;
+		}
+
+		if (blocked) {
+			ModifyOccupiedGrid (origin_position);
 		}
 
 		moving = false;
@@ -227,6 +243,7 @@ public class GridBaseMovement : MonoBehaviour {
 		Vector3 origin_velocity = rb.velocity;
 		Vector3 target_position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), 0.0f);
 
+		ModifyOccupiedGrid (target_position);
 
 		for (float t = 0.0f; t < offset / origin_velocity.magnitude; t += Time.deltaTime) {
 			rb.velocity = origin_velocity;
@@ -238,8 +255,17 @@ public class GridBaseMovement : MonoBehaviour {
 		change_direction_moving = false;
 	}
 
+	private void ModifyOccupiedGrid(Vector3 new_occupied_grid) {
+		GridController.instance.TeamLeaveGrid (occupied_grid, team_number);
+		occupied_grid = new_occupied_grid;
+		GridController.instance.TeamOccupyGrid (occupied_grid, team_number);
+	}
 
 	public Vector3 GetDirection() {
 		return direction;
+	}
+
+	public void SetOccupiedGridAfterReborn(Vector3 reborn_position) {
+		ModifyOccupiedGrid (reborn_position);
 	}
 }

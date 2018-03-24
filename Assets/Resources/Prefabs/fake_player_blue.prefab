@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114277317586670042}
   m_Layer: 0
   m_Name: fake_player_blue
-  m_TagString: Untagged
+  m_TagString: fake_player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

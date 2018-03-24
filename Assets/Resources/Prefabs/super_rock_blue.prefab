@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54033931721731188}
   - component: {fileID: 114639181406312078}
   m_Layer: 0
-  m_Name: rock_red
+  m_Name: super_rock_blue
   m_TagString: rock_red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +85,7 @@ MonoBehaviour:
   exist_time: 5
   blink_time: 4
   check_distance: 0.6
+  speed_coefficient: 1.5
   opponent_rock_removal_duration: 1
   bounce_curve:
     serializedVersion: 2
@@ -145,7 +146,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: d3f31bd017f10427b961ab7a14c64690, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60d207d76b8c348c78bddd0278dd9892, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

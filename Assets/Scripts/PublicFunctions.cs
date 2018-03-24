@@ -6,7 +6,7 @@ public class PublicFunctions : MonoBehaviour {
 
 	public static PublicFunctions instance;
 
-	void Start () {
+	void Awake () {
 		if (instance != null && instance != this) {
 			Destroy (this);
 		} else {

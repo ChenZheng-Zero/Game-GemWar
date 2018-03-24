@@ -92,7 +92,6 @@ public class RockInteraction : MonoBehaviour {
 				RockController rock_controller = collider.GetComponent<RockController> ();
 				rock_controller.SetPlayer (gameObject);
 				rock_controller.SetMovingDirection (direction);
-				rock_controller.SetSpeedCoefficient (buff_controller.GetRockSpeedCoefficient ());
 			} else if (!rock_bar_displayer.IfRockCountZero () && 
 				(collider && PublicFunctions.instance.GetTeamNumber(tag) + PublicFunctions.instance.GetTeamNumber(collider.tag) == 3 ||
 				!(collider && (collider.CompareTag("base_blue") || collider.CompareTag("wall") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") || collider.CompareTag(opponent_rock_tag) ||
