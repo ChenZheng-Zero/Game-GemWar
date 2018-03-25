@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a1f949a6ae68c4ad5b32407df50a926d
-timeCreated: 1520625595
+timeCreated: 1521986953
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -10,6 +10,7 @@ MonoImporter:
       type: 2}
   - dialog_box: {fileID: 1454093782175908, guid: d553141fa4efb4732b2f63fea25c35dd,
       type: 2}
+  - letter: {instanceID: 0}
   - up_pointer: {fileID: 1364145608506654, guid: b1970fcfc25454e4aba316a37c158bb3,
       type: 2}
   - down_pointer: {fileID: 1816452390725042, guid: 2099cff7d110e4daeb2311bd35f8f673,
@@ -25,8 +26,12 @@ MonoImporter:
   - fake_blue_opponent: {fileID: 1784113269058146, guid: a696a0d6eabeb451a8795c612c0f4319,
       type: 2}
   - red_rock: {fileID: 1762573267520350, guid: 022e95dae64e446e6ab3cc2033ee5862, type: 2}
-  - blue_rock: {fileID: 1327164681769542, guid: be596ff55134f42bb8b905daf57985ca,
+  - blue_rock: {fileID: 1762573267520350, guid: 494b4c541f2f841e4b97ee383aad9764,
       type: 2}
+  - tick: {fileID: 1954164355007316, guid: 5229b0ccef07847f594820a93e1b0600, type: 2}
+  - panel_text: {instanceID: 0}
+  - panel_buttonA: {instanceID: 0}
+  - panel_buttonB: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

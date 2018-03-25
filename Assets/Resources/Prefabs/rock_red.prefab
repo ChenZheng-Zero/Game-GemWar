@@ -85,6 +85,7 @@ MonoBehaviour:
   exist_time: 5
   blink_time: 4
   check_distance: 0.6
+  speed_coefficient: 1
   opponent_rock_removal_duration: 1
   bounce_curve:
     serializedVersion: 2
@@ -111,6 +112,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   curve_speed_coefficient: 2
+  lightening: {fileID: 1436222238904590, guid: 10877a8907e0e4f499b2a90501a66f3b, type: 2}
 --- !u!212 &212290634045050672
 SpriteRenderer:
   m_ObjectHideFlags: 1

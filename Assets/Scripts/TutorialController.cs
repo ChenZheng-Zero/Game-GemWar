@@ -154,13 +154,14 @@ public class TutorialController : MonoBehaviour {
 
 	IEnumerator Level1(){
 
-		string text_3 = "Good job!\n\nAnyone hit by a rock will resurrect at the team's spawn point in 5 second.";
 		string text_4 = "Tutorial 2: Carry Gem\n\nPress A to steal your opponents' gems and drop them in your base.";
 		string text_5 = "Congratulations! You finish all tutorials.\n\nThe team carries more gems will win.";
 
-		GameObject letter_box = CreateLetter (new string[]{text_3, text_4}, new VideoClip[]{video_clips[7], video_clips[6]});
+		GameObject letter_box = CreateLetter (new string[]{text_4}, new VideoClip[]{video_clips[1]});
 		GameObject finish_letter = null;
 		bool check_finish_letter = false;
+
+		GameObject.Find ("Pointers").SetActive (true);
 
 		bool initialized = false;
 		while (true) {

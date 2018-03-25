@@ -23,6 +23,7 @@ public class RockController : MonoBehaviour {
 	public float opponent_rock_removal_duration = 2.0f;
 	public AnimationCurve bounce_curve;
 	public float curve_speed_coefficient = 2.0f;
+	public GameObject lightening;
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -53,6 +54,8 @@ public class RockController : MonoBehaviour {
 	}
 
 	void OnDestroy() {
+		
+		Instantiate (lightening, transform.position - new Vector3(0f, 0f, 0.5f), Quaternion.identity);
 		Instantiate (rock_collectable_prefab, transform.position, Quaternion.identity);
 	}
 
