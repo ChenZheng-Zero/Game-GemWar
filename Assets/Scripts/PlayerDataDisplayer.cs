@@ -8,6 +8,8 @@ public class PlayerDataDisplayer : MonoBehaviour {
 	public GameObject player_data_board;
 	public GameObject blue_score;
 	public GameObject red_score;
+	public GameObject blue_win;
+	public GameObject red_win;
 	public List<GameObject> players = new List<GameObject> ();
 	public List<GameObject> player_scores = new List<GameObject> ();
 	public AnimationCurve slide_curve;
@@ -27,8 +29,16 @@ public class PlayerDataDisplayer : MonoBehaviour {
 	}
 
 	private void UpdateData() {
-		blue_score.GetComponent<Text> ().text = ScoreDisplayer.instance.GetBlueScore ().ToString ();
-		red_score.GetComponent<Text> ().text = ScoreDisplayer.instance.GetRedScore ().ToString ();
+		int _blue_score = ScoreDisplayer.instance.GetBlueScore ();
+		int _red_score = ScoreDisplayer.instance.GetRedScore ();
+		blue_score.GetComponent<Text> ().text = _blue_score.ToString ();
+		red_score.GetComponent<Text> ().text = _red_score.ToString ();
+
+		if (_blue_score > _red_score) {
+			blue_win.SetActive (true);
+		} else if (_blue_score < _red_score) {
+			red_win.SetActive (true);
+		}
 
 		for (int i = 0; i < 4; ++i) {
 			PlayerDataController data = players [i].GetComponent<PlayerDataController> ();
