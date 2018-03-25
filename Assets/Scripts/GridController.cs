@@ -10,7 +10,7 @@ public class GridController : MonoBehaviour {
 	public int vertical_length;
 	public static GridController instance;
 
-	void Start () {
+	void Awake () {
 		if (instance != null && instance != this) {
 			Destroy (this);
 		} else {
