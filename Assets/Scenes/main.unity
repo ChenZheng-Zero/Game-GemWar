@@ -3731,60 +3731,15 @@ Prefab:
       propertyPath: reborn_place
       value: 
       objectReference: {fileID: 225733060}
-    - target: {fileID: 1896405745152226, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
-      propertyPath: m_Name
-      value: player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 57eb67d527c1d4bafa63ebe1e1decf35,
-        type: 3}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 212492484333117250, guid: 1563c58d71ff14748812b6fdfb90fa95,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1896405745152226, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114864076077677012, guid: 1563c58d71ff14748812b6fdfb90fa95,
         type: 2}
       propertyPath: reborn_UI
       value: 
       objectReference: {fileID: 477403872}
+    - target: {fileID: 1896405745152226, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
+      propertyPath: m_Name
+      value: player1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0

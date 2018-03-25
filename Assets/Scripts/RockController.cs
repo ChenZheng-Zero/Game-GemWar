@@ -46,6 +46,7 @@ public class RockController : MonoBehaviour {
 				rb.velocity = Vector3.zero;
 				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
 				direction = Vector3.zero;
+
 				//Vanishing Code
 				//StartCoroutine (BlinkCoroutine ());
 			}
@@ -67,35 +68,43 @@ public class RockController : MonoBehaviour {
 
 
 	void OnTriggerStay(Collider collider) {
-//		if (direction != Vector3.zero) {
-			if (team_number + PublicFunctions.instance.GetTeamNumber (collider.tag) == 3) {
-				BuffController collider_buff_controller = collider.GetComponent<BuffController> ();
-				if (collider_buff_controller.GetGuardian ()) {
-					collider_buff_controller.ResetGuardian ();
-				} else {
-					if (shot_by) {
-						shot_by.GetComponent<PlayerDataController> ().AddKill ();
+		if (team_number + PublicFunctions.instance.GetTeamNumber (collider.tag) == 3) {
+			BuffController collider_buff_controller = collider.GetComponent<BuffController> ();
+			if (collider_buff_controller.GetGuardian ()) {
+				collider_buff_controller.ResetGuardian ();
+			} else {
+				if (speed_coefficient != 1.0f && collider.GetComponent<GemInteraction> ().GetHolding ()) {
+					rb.velocity = Vector3.zero;
+					Vector3 round_position = PublicFunctions.instance.RoundVector3 (transform.position);
+					if (round_position == PublicFunctions.instance.RoundVector3 (collider.transform.position)) {
+						transform.position = round_position - direction;
+					} else {
+						transform.position = round_position;
 					}
-					collider.GetComponent<Reborn> ().StartRebornCoroutine ();
+					direction = Vector3.zero;
 				}
 
-				if (speed_coefficient == 1.0f) {
-					Destroy (gameObject);
+				if (shot_by) {
+					shot_by.GetComponent<PlayerDataController> ().AddKill ();
 				}
-			} else if (collider.tag == opponent_rock_tag) {
-				if (speed_coefficient == 1.0f || direction == Vector3.zero) {
-					Destroy (gameObject);
-				}
-//				Destroy (collider.gameObject);
-			} else if (CheckStopingTag(collider.tag)) {
-				speed_coefficient = 1.0f;
-				direction = Vector3.zero;
-				rb.velocity = Vector3.zero;
-				transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
-				//Vanishing Code
-				//StartCoroutine (BlinkCoroutine ());
+				collider.GetComponent<Reborn> ().StartRebornCoroutine ();
 			}
-//		}
+
+			if (speed_coefficient == 1.0f) {
+				Destroy (gameObject);
+			}
+		} else if (collider.tag == opponent_rock_tag) {
+			if (speed_coefficient == 1.0f || direction == Vector3.zero || collider.GetComponent<RockController> ().IfSuperRock ()) {
+				Destroy (gameObject);
+			}
+		} else if (CheckStopingTag(collider.tag)) {
+			speed_coefficient = 1.0f;
+			direction = Vector3.zero;
+			rb.velocity = Vector3.zero;
+			transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
+			//Vanishing Code
+			//StartCoroutine (BlinkCoroutine ());
+		}
 	}
 
 	public void SetPlayer(GameObject player) {
@@ -208,5 +217,13 @@ public class RockController : MonoBehaviour {
 			transform.localScale.z);
 
 		vertical_bouncing = false;
+	}
+
+	public bool IfSuperRock() {
+		if (speed_coefficient == 1.0f) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

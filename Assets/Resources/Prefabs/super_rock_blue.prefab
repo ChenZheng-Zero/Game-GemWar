@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114639181406312078}
   m_Layer: 0
   m_Name: super_rock_blue
-  m_TagString: rock_red
+  m_TagString: rock_blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
