@@ -114,9 +114,9 @@ public class RockController : MonoBehaviour {
 	public void SetMovingDirection(Vector3 _direction) {
 		direction = _direction;
 		rb.velocity = direction * rock_speed * speed_coefficient;
-		if ((direction == Vector3.up || direction == Vector3.down) && !vertical_bouncing) {
+		if (speed_coefficient == 1.0f && (direction == Vector3.up || direction == Vector3.down) && !vertical_bouncing) {
 			StartCoroutine (VerticalBounceCoroutine ());
-		} else if ((direction == Vector3.left || direction == Vector3.right) && !horizontal_bouncing) {
+		} else if (speed_coefficient == 1.0f && (direction == Vector3.left || direction == Vector3.right) && !horizontal_bouncing) {
 			StartCoroutine (HorizontalBounceCoroutine ());
 		}
 	}
