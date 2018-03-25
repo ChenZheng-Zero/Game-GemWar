@@ -14,8 +14,8 @@ public class RockBarDisplayer : MonoBehaviour {
 	public int max_rock = 3;
 
 	void Start () {
-		normal_rock_sprite = Resources.Load<Sprite> ("Sprites/yellow");
-		super_rock_sprite = Resources.Load<Sprite> ("Sprites/green");
+		normal_rock_sprite = Resources.Load<Sprite> ("Sprites/" + GetComponent<PlayerControl> ().GetOwnColor ());
+		super_rock_sprite = Resources.Load<Sprite> ("Sprites/orange");
 
 		Transform rock_bar = null;
 		foreach (Transform child in transform) {
@@ -63,7 +63,7 @@ public class RockBarDisplayer : MonoBehaviour {
 		}
 
 		--rock_count;
-		for (int i = rock_count - 1; i >= 0; --i) {
+		for (int i = 0; i < rock_count; ++i) {
 			rocks [i].sprite = rocks [i + 1].sprite;
 		}
 		rocks [rock_count].enabled = false;

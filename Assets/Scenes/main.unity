@@ -2793,6 +2793,24 @@ Prefab:
       propertyPath: reborn_UI
       value: 
       objectReference: {fileID: 874501793}
+    - target: {fileID: 212813064590098466, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 247d188b1e0954500ae8df363f5c220c,
+        type: 3}
+    - target: {fileID: 212407837149349566, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 247d188b1e0954500ae8df363f5c220c,
+        type: 3}
+    - target: {fileID: 212034509489436446, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 247d188b1e0954500ae8df363f5c220c,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
@@ -9235,6 +9253,24 @@ Prefab:
       propertyPath: reborn_UI
       value: 
       objectReference: {fileID: 1591910371}
+    - target: {fileID: 212813064590098466, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
+    - target: {fileID: 212034509489436446, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
+    - target: {fileID: 212407837149349566, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
@@ -14077,6 +14113,24 @@ Prefab:
       propertyPath: reborn_UI
       value: 
       objectReference: {fileID: 1669472511}
+    - target: {fileID: 212813064590098466, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
+    - target: {fileID: 212034509489436446, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
+    - target: {fileID: 212407837149349566, guid: 1563c58d71ff14748812b6fdfb90fa95,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff878af69245e40f5ad8fe2594f103c7,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1563c58d71ff14748812b6fdfb90fa95, type: 2}
   m_IsPrefabParent: 0
