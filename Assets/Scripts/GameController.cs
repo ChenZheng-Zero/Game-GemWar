@@ -35,9 +35,11 @@ public class GameController : MonoBehaviour {
 		if (blue_score == red_score) {
 			Debug.Log ("Even");
 			SceneManager.LoadSceneAsync ("sudden_death");
+		} else {
+			game_over = true;
+//			WinningTextDisplayer.instance.ShowWinningText (blue_score, red_score);
+			GetComponent<PlayerDataDisplayer> ().Display ();
 		}
-		game_over = true;
-		WinningTextDisplayer.instance.ShowWinningText (blue_score, red_score);
 	}
 
 	public bool GetGameOver() {
