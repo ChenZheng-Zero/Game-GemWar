@@ -28,6 +28,7 @@ TagManager:
   - guardian_buff
   - super_rock_buff
   - fake_player
+  - gem_green
   layers:
   - Default
   - TransparentFX
