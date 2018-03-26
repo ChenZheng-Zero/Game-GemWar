@@ -11,6 +11,7 @@ public class RockInteraction : MonoBehaviour {
 	private string own_rock_tag;
 	private string opponent_rock_tag;
 	private Object own_rock_prefab;
+	private Object own_super_rock_prefab;
 	private InputDevice input_device;
 	private Reborn reborn;
 	private GemInteraction gem_interaction;
@@ -31,6 +32,7 @@ public class RockInteraction : MonoBehaviour {
 		own_rock_tag = "rock_" + GetComponent<PlayerControl> ().GetOwnColor ();
 		opponent_rock_tag = "rock_" + GetComponent<PlayerControl> ().GetOpponentColor ();
 		own_rock_prefab = Resources.Load ("Prefabs/" + own_rock_tag, typeof(GameObject));
+		own_super_rock_prefab = Resources.Load ("Prefabs/super_" + own_rock_tag, typeof(GameObject));
 	}
 
 
@@ -97,8 +99,13 @@ public class RockInteraction : MonoBehaviour {
 				!(collider && (collider.CompareTag("base_blue") || collider.CompareTag("wall") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") || collider.CompareTag(opponent_rock_tag) ||
 				collider.CompareTag("reborn_red") || collider.CompareTag("reborn_blue") || PublicFunctions.instance.GetTeamNumber(tag) == PublicFunctions.instance.GetTeamNumber(collider.tag))))) {
 
-				rock_bar_displayer.ModifyRockCount (-1);
-				GameObject rock = (GameObject)Instantiate (own_rock_prefab, facing_position, Quaternion.identity);
+				GameObject rock;
+				if (rock_bar_displayer.IfNextSuperRock ()) {
+					rock = (GameObject)Instantiate (own_super_rock_prefab, facing_position, Quaternion.identity);
+				} else {
+					rock = (GameObject)Instantiate (own_rock_prefab, facing_position, Quaternion.identity);
+				}
+				rock_bar_displayer.UseRock ();
 				rock.GetComponent<RockController> ().SetPlayer (gameObject);
 			}
 		}

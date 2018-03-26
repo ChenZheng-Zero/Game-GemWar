@@ -9,6 +9,7 @@ public class BuffController : MonoBehaviour {
 	private int super_rock = 0;
 	private Object shield_prefab;
 	private GameObject shield = null;
+	private RockBarDisplayer rock_bar_displayer;
 
 	public float speed_up_duration = 5.0f;
 	public float speed_up_ratio = 2.0f;
@@ -18,6 +19,7 @@ public class BuffController : MonoBehaviour {
 
 	void Start () {
 		shield_prefab = Resources.Load ("Prefabs/shield", typeof(GameObject));
+		rock_bar_displayer = GetComponent<RockBarDisplayer> ();
 	}
 
 	// Speed Up
@@ -93,7 +95,8 @@ public class BuffController : MonoBehaviour {
 	}
 
 	public void SuperRock() {
-		StartCoroutine (SuperRockCoroutine ());
+//		StartCoroutine (SuperRockCoroutine ());
+		rock_bar_displayer.SuperRockBuff ();
 	}
 
 	public float GetRockSpeedCoefficient() {

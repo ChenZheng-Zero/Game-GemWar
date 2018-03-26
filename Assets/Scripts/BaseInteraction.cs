@@ -34,9 +34,9 @@ public class BaseInteraction : MonoBehaviour {
 		Collider collider = PublicFunctions.instance.FindObjectOnPosition (pos);
 		if (collider && collider.tag == own_base_tag) {
 			if (gem_interaction.GetHolding ()) {
-				collider.GetComponent<BaseScoreController> ().AddScore (gem_interaction.GetHoldingGemColor ());
 				gem_interaction.Remove ();
 				player_data_controller.AddScore ();
+				collider.GetComponent<BaseScoreController> ().AddScore (gem_interaction.GetHoldingGemColor ());
 			}
 			return true;
 		} else if (collider && collider.tag == opponent_base_tag) {

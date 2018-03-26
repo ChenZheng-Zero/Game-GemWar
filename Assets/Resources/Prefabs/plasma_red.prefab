@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4545256206800328}
   - component: {fileID: 198678058298958266}
   - component: {fileID: 199338065829788664}
+  - component: {fileID: 114277259014438890}
   m_Layer: 0
   m_Name: plasma_red
   m_TagString: Untagged
@@ -165,6 +166,17 @@ Transform:
   m_Father: {fileID: 4545256206800328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114277259014438890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436222238904590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cf102a7e8fc4cdc94677ebbab967aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198125576645195132
 ParticleSystem:
   m_ObjectHideFlags: 1
