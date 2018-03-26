@@ -51,7 +51,7 @@ public class TutorialController : MonoBehaviour {
 	float[] player_progress;
 	bool go_next_level = true;
 	public int start_level = 0; // For debug only
-
+	GameObject pointer_set;
 
 	/* Class functions:
 	 * Level progression in coroutines
@@ -75,6 +75,7 @@ public class TutorialController : MonoBehaviour {
 		panel_text.GetComponent<Text> ().text = "";
 		panel_buttonA.GetComponent<Image> ().enabled = false;
 		panel_buttonB.GetComponent<Image> ().enabled = false;
+		pointer_set = GameObject.Find ("Pointers");
 	}
 	
 	void Update () {
@@ -113,10 +114,11 @@ public class TutorialController : MonoBehaviour {
 		
 	IEnumerator Level0(){
 
-		string text_1 = "Tutorial 1: Rock\n\nStep 1: Break red and blue rocks\nStep 2: Shoot your rock onto the opponent.";
+		string text_1 = "Tutorial 1: Box\n\nStep 1: Break red and blue Boxes\nStep 2: Shoot your box onto the opponent.";
 
 		GameObject letter_box = CreateLetter (new string[]{ text_1 }, new VideoClip[]{video_clips[0]});
 		GameObject[] fake_players = new GameObject[4];
+		pointer_set.SetActive (false);
 
 		bool initialized = false;
 		while (true) {
@@ -130,7 +132,7 @@ public class TutorialController : MonoBehaviour {
 				fake_players[1] = Instantiate (fake_red_opponent, new Vector3 (1f, 2f, 0), Quaternion.identity);
 				fake_players[2] = Instantiate (fake_blue_opponent, new Vector3 (-1f, -2f, 0), Quaternion.identity);
 				fake_players[3] = Instantiate (fake_blue_opponent, new Vector3 (1f, -2f, 0), Quaternion.identity);
-				panel_text.GetComponent<Text> ().text = "Place or push the rocks in the front.\nBreak the rocks.";
+				panel_text.GetComponent<Text> ().text = "Place or push a box in the front.\nBreak the boxes.";
 				panel_buttonA.GetComponent<Image> ().enabled = true;
 				panel_buttonB.GetComponent<Image> ().enabled = true;
 			}
@@ -161,7 +163,7 @@ public class TutorialController : MonoBehaviour {
 		GameObject finish_letter = null;
 		bool check_finish_letter = false;
 
-		GameObject.Find ("Pointers").SetActive (true);
+		pointer_set.SetActive (true);
 
 		bool initialized = false;
 		while (true) {

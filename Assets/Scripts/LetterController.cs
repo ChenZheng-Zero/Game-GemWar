@@ -78,9 +78,9 @@ public class LetterController : MonoBehaviour {
 	public void SetVideo(VideoClip[] _clips){
 		clips = _clips;
 		if (clips [0]) {
-			TurnOnVideo (true);
 			video_player.GetComponent<VideoPlayer> ().clip = clips [0];
 			SetPlaceHolder (clips [0].width, clips [0].height);
+			TurnOnVideo (true);
 		} else {
 			TurnOnVideo (false);
 		}
