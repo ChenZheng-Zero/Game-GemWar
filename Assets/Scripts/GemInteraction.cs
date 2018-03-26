@@ -31,7 +31,7 @@ public class GemInteraction : MonoBehaviour {
 			if (holding) {
 				Vector3 facing_position = transform.position + grid_base_movement.GetDirection () + GetOffset ();
 				Collider collider = PublicFunctions.instance.FindObjectOnPosition (facing_position);
-				if (!collider || !(collider.CompareTag ("base_blue") || collider.CompareTag ("base_red") || collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") || collider.CompareTag ("gem_green") ||
+				if (!collider || !(collider.CompareTag ("base_blue") || collider.CompareTag ("base_red") || collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") || 
 					collider.CompareTag ("wall") || collider.CompareTag ("rock_blue") || collider.CompareTag ("rock_red") || collider.CompareTag ("reborn_blue") || collider.CompareTag ("reborn_red") ||
 					collider.CompareTag ("player1") || collider.CompareTag ("player2") || collider.CompareTag ("player3") || collider.CompareTag ("player4"))) {
 
@@ -42,7 +42,7 @@ public class GemInteraction : MonoBehaviour {
 				}
 			} else {
 				Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + grid_base_movement.GetDirection ());
-				if (collider && (collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") || collider.CompareTag ("gem_green"))) {
+				if (collider && (collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red"))) {
 					collider.GetComponent<BoxCollider> ().enabled = false;
 					collider.transform.position = transform.position + Vector3.up * 0.8f;
 					Hold (collider.gameObject);
