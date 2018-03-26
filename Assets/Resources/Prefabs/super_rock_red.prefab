@@ -114,6 +114,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   curve_speed_coefficient: 2
+  lightening: {fileID: 1436222238904590, guid: 10877a8907e0e4f499b2a90501a66f3b, type: 2}
 --- !u!198 &198563029180518372
 ParticleSystem:
   m_ObjectHideFlags: 1
