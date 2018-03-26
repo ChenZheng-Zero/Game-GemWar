@@ -55,8 +55,6 @@ public class Reborn : MonoBehaviour {
 		}
 
 		rb.velocity = Vector3.zero;
-		transform.position = reborn_position;
-
 		grid_base_movement.SetOccupiedGridAfterReborn (reborn_position);
 
 		time_left.text = ": " + reborn_duration.ToString ();
@@ -65,6 +63,8 @@ public class Reborn : MonoBehaviour {
 			time_left.text = ": " + Mathf.Round(reborn_duration - t).ToString ();
 			yield return null;
 		}
+
+		transform.position = reborn_position;
 		reborn_UI.SetActive (false);
 
 		rock_bar.SetActive (true);
