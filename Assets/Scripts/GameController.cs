@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour {
 		} else {
 			game_over = true;
 			GetComponent<PlayerDataDisplayer> ().Display ();
+			Debug.Log ("Finished");
 		}
 	}
 

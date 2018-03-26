@@ -12366,7 +12366,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1105826401603716, guid: c8dfd6f050781419cb57a9056e326b5f, type: 2}
       propertyPath: m_TagString
-      value: gem_green
+      value: gem_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 65903124883807824, guid: c8dfd6f050781419cb57a9056e326b5f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8dfd6f050781419cb57a9056e326b5f, type: 2}
