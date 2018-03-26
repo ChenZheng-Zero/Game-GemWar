@@ -185,7 +185,7 @@ public class TutorialController : MonoBehaviour {
 					player_progress [i] = 1.5f;
 				} 
 				if (player_progress [i] == 1.5f) {
-					if (!players [i].GetComponent<GemInteraction> ().GetHolding()) {
+					if (players [i].GetComponent<PlayerDataController> ().GetScore() > 0) {
 						player_progress [i] = 2.0f;
 					}
 				}
