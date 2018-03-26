@@ -30,13 +30,18 @@ public class SuddenDeathController : MonoBehaviour {
 
 		if (sudden_death_mode) {
 			Debug.Log ("sudden death");
-			GameObject countdown = GameObject.Find ("Canvas/Panel/CountDown");
-			countdown.GetComponent<Text> ().enabled = false;
-			countdown.GetComponent<CountDownDisplayer> ().enabled = false;
+//			GameObject countdown = GameObject.Find ("Canvas/Panel/CountDown");
+//			countdown.GetComponent<Text> ().enabled = false;
+//			countdown.GetComponent<CountDownDisplayer> ().enabled = false;
+//			GameObject score_bar = GameObject.Find ("Canvas/Panel/ScoreBar");
+//			score_bar.GetComponent<Image> ().enabled = false;
+//			foreach (Transform child in score_bar.transform) {
+//				child.gameObject.GetComponent<Image> ().enabled = false;
+//			}
 			StartCoroutine (EnterSuddenDeath ());
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (sudden_death_mode) {
@@ -99,13 +104,13 @@ public class SuddenDeathController : MonoBehaviour {
 	}
 
 	private void DisablePlayers(){
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < 4; ++i) {
 			players [i].GetComponent<GridBaseMovement> ().enabled = false;
 		}
 	}
 
 	private void EnablePlayers(){
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < 4; ++i) {
 			players [i].GetComponent<GridBaseMovement> ().enabled = true;
 		}
 	}
