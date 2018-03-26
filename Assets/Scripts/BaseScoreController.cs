@@ -39,7 +39,12 @@ public class BaseScoreController: MonoBehaviour {
 		//				ScoreDisplayer.instance.ModifyRedScore (1);
 		//			}
 		//		}
-		if (SceneManager.GetActiveScene ().name == "main") {
+		if (SceneManager.GetActiveScene ().name == "sudden_death" ) {
+			Debug.Log ("Sudden Death Winning");
+			if (own_color == "blue") ScoreDisplayer.instance.BlueWinScore ();
+			else ScoreDisplayer.instance.RedWinScore ();
+			GameController.instance.SetGameOver ();
+		} else {
 			if (own_color == "blue" && color == "blue") {
 				ScoreDisplayer.instance.BlueAvoidPotentialLose ();
 			} else if (own_color == "blue" && color == "red") {
@@ -49,11 +54,6 @@ public class BaseScoreController: MonoBehaviour {
 			} else {
 				ScoreDisplayer.instance.RedAvoidPotentialLose ();
 			}
-		} else {
-			Debug.Log ("Winning");
-			if (own_color == "blue") ScoreDisplayer.instance.BlueWinScore ();
-			else ScoreDisplayer.instance.RedWinScore ();
-			GameController.instance.SetGameOver ();
 		}
 	}
 
