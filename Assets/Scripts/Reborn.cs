@@ -55,12 +55,12 @@ public class Reborn : MonoBehaviour {
 		}
 
 		rb.velocity = Vector3.zero;
-		grid_base_movement.SetOccupiedGridAfterReborn (reborn_position);
 
 		time_left.text = ": " + reborn_duration.ToString ();
 		reborn_UI.SetActive (true);
 		for (float t = 0.0f; t < reborn_duration; t += Time.deltaTime) {
 			time_left.text = ": " + Mathf.Round(reborn_duration - t).ToString ();
+			grid_base_movement.SetOccupiedGridAfterReborn (reborn_position);
 			yield return null;
 		}
 
