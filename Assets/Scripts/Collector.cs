@@ -16,7 +16,7 @@ public class Collector : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider collider) {
+	void OnTriggerStay(Collider collider) {
 		if (collider.CompareTag ("rock_collectable") && !rock_bar_displayer.IfRockCountMax ()) {
 			rock_bar_displayer.AddRock ();
 			Destroy (collider.gameObject);

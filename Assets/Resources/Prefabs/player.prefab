@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5275d82564af442c5be7bd30af8fc163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_up_duration: 5
+  speed_up_duration: 4
   speed_up_ratio: 2
   guardian_duration: 5
   super_rock_duration: 5
