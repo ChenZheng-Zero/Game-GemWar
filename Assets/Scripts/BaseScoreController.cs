@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class BaseScoreController: MonoBehaviour {
 
 	private string own_color;
-	public int current_score = 5;
 	private List<GameObject> scores = new List<GameObject> ();
+
+	public int current_score = 3;
 
 	void Start () {
 		foreach (Transform child in transform) {
@@ -22,7 +23,9 @@ public class BaseScoreController: MonoBehaviour {
 	}
 
 	void Update () {
-
+		if (current_score == scores.Count && SceneManager.GetActiveScene ().name == "main") {
+			GameController.instance.SetGameOver ();
+		}
 	}
 
 	public void AddScore(string color) {
@@ -39,7 +42,7 @@ public class BaseScoreController: MonoBehaviour {
 		//				ScoreDisplayer.instance.ModifyRedScore (1);
 		//			}
 		//		}
-		if (SceneManager.GetActiveScene ().name == "sudden_death" ) {
+		if (SceneManager.GetActiveScene ().name == "sudden_death") {
 			Debug.Log ("Sudden Death Winning");
 			if (own_color == "blue") ScoreDisplayer.instance.BlueWinScore ();
 			else ScoreDisplayer.instance.RedWinScore ();

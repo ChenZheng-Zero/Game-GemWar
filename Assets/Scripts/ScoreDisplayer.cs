@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreDisplayer : MonoBehaviour {
 
-	private int blue_score = 5;
-	private int red_score = 5;
+	private int blue_score = 3;
+	private int red_score = 3;
 	private int blue_potential_lose = 0;
 	private int red_potential_lose = 0;
 	private Sprite score_block_blue_sprite;
@@ -83,20 +83,7 @@ public class ScoreDisplayer : MonoBehaviour {
 				score_blocks [index].transform.localRotation = Quaternion.Euler((Vector3.forward * (max_shake_degree * t / (shake_interval / 4) - max_shake_degree)));
 				yield return null;
 			}
-
-
-//			target_image.sprite = score_block_white_sprite;
-//			yield return new WaitForSeconds (blink_interval);
-//			target_image.sprite = origin_sprite;
-//			yield return new WaitForSeconds (blink_interval);
 		}
-
-//		if (blue_score - 1 >= index) {
-//			target_image.sprite = score_block_blue_sprite;
-//		} else {
-//			target_image.sprite = score_block_red_sprite;
-//		}
-
 		score_blocks [index].transform.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
