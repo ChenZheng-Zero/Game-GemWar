@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RockController : MonoBehaviour {
 
+	private bool particle_activate = true;
 	private int team_number;
 	private string opponent_rock_tag;
 	private Vector3 direction = Vector3.zero;
@@ -12,6 +13,7 @@ public class RockController : MonoBehaviour {
 	private Rigidbody rb;
 	private Renderer rend;
 	private GameObject shot_by = null;
+	private ParticleSystem ps = null;
 	private bool horizontal_bouncing = false;
 	private bool vertical_bouncing = false;
 
@@ -30,6 +32,10 @@ public class RockController : MonoBehaviour {
 		rend = GetComponent<Renderer> ();
 		rock_collectable_prefab = Resources.Load ("Prefabs/rock_collectable", typeof(GameObject));
 
+		if (speed_coefficient != 1.0f) {
+			ps = GetComponent<ParticleSystem> ();
+		}
+
 		if (tag == "rock_blue") {
 			team_number = 1;
 			opponent_rock_tag = "rock_red";
@@ -41,6 +47,11 @@ public class RockController : MonoBehaviour {
 
 	void Update () {
 		if (direction != Vector3.zero) {
+			if (!particle_activate) {
+				ps.Play ();
+				particle_activate = true;
+			}
+				
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + direction * check_distance * speed_coefficient);
 
 			if (collider && CheckStopingTag (collider.tag)) {
@@ -51,11 +62,13 @@ public class RockController : MonoBehaviour {
 				//Vanishing Code
 				//StartCoroutine (BlinkCoroutine ());
 			}
-		} 
+		} else if (particle_activate) {
+			ps.Stop ();
+			particle_activate = false;
+		}
 	}
 
 	void OnDestroy() {
-		
 		Instantiate (lightening, transform.position - new Vector3(0f, 0f, 0.5f), Quaternion.identity);
 		Instantiate (rock_collectable_prefab, transform.position, Quaternion.identity);
 	}
