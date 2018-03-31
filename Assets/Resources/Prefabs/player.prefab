@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 114742985423287658}
   - component: {fileID: 198608891806528580}
   - component: {fileID: 199421217521671662}
+  - component: {fileID: 114182732421736294}
   m_Layer: 0
   m_Name: player
   m_TagString: player1
@@ -321,6 +322,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fea4501e4c814f90a9c67ff7a5b909f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114182732421736294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896405745152226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117c3ce44e0464b8396263720929f07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dead_prefab: {fileID: 1026416636923574, guid: 5f9c30ec4eba144e789ba4fd9b8d3131,
+    type: 2}
 --- !u!114 &114228022485943008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,7 +520,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1508646679
+  randomSeed: 1521447359
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4116,7 +4130,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 296b734923d224f91905b12f21300e62, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6102941, g: 0.6102941, b: 0.6102941, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
