@@ -12,7 +12,9 @@ public class BaseScoreController: MonoBehaviour {
 
 	void Start () {
 		foreach (Transform child in transform) {
-			scores.Add (child.gameObject);
+			if (child.name != "star_burst") {
+				scores.Add (child.gameObject);
+			}
 		}
 
 		if (tag == "base_blue") {
@@ -43,9 +45,11 @@ public class BaseScoreController: MonoBehaviour {
 		//			}
 		//		}
 		if (SceneManager.GetActiveScene ().name == "sudden_death") {
-			Debug.Log ("Sudden Death Winning");
-			if (own_color == "blue") ScoreDisplayer.instance.BlueWinScore ();
-			else ScoreDisplayer.instance.RedWinScore ();
+			if (own_color == "blue") {
+				ScoreDisplayer.instance.BlueWinScore ();
+			} else {
+				ScoreDisplayer.instance.RedWinScore ();
+			}
 			GameController.instance.SetGameOver ();
 		} else {
 			if (own_color == "blue" && color == "blue") {

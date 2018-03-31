@@ -37,6 +37,7 @@ public class BaseInteraction : MonoBehaviour {
 				gem_interaction.Remove ();
 				player_data_controller.AddScore ();
 				collider.GetComponent<BaseScoreController> ().AddScore (gem_interaction.GetHoldingGemColor ());
+				collider.GetComponent<ScoreJuice> ().StarBurst ();
 			}
 			return true;
 		} else if (collider && collider.tag == opponent_base_tag) {

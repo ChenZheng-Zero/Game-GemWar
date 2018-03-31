@@ -47,7 +47,7 @@ public class RockController : MonoBehaviour {
 
 	void Update () {
 		if (direction != Vector3.zero) {
-			if (!particle_activate) {
+			if (!particle_activate && speed_coefficient != 1.0f) {
 				ps.Play ();
 				particle_activate = true;
 			}
@@ -62,7 +62,7 @@ public class RockController : MonoBehaviour {
 				//Vanishing Code
 				//StartCoroutine (BlinkCoroutine ());
 			}
-		} else if (particle_activate) {
+		} else if (particle_activate && speed_coefficient != 1.0f) {
 			ps.Stop ();
 			particle_activate = false;
 		}
