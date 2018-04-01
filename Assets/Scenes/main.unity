@@ -2995,7 +2995,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: 6264b2b598b1d2f44a146d818eccb054, type: 2}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 6264b2b598b1d2f44a146d818eccb054, type: 2}
       propertyPath: simulationSpeed
@@ -6388,7 +6388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: 206e628c7d66b7746a56ab3d91837979, type: 2}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: 206e628c7d66b7746a56ab3d91837979, type: 2}
       propertyPath: m_MinParticleSize
