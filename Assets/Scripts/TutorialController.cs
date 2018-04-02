@@ -196,7 +196,8 @@ public class TutorialController : MonoBehaviour {
 					finish_letter = CreateLetter (new string[]{ text_5 }, new VideoClip[]{ null });
 				}
 				if (check_finish_letter && !finish_letter) {
-					SceneManager.LoadScene (0);
+//					SceneManager.LoadScene (0);
+					ScreenTransition.instance.TranistionTo ("tutorial");
 					break;
 				}
 			}
