@@ -37,6 +37,7 @@ public class BaseInteraction : MonoBehaviour {
 				gem_interaction.Remove ();
 				player_data_controller.AddScore ();
 				collider.GetComponent<BaseScoreController> ().AddScore (gem_interaction.GetHoldingGemColor ());
+				GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayGemdownSound ();
 			}
 			return true;
 		} else if (collider && collider.tag == opponent_base_tag) {
@@ -44,6 +45,7 @@ public class BaseInteraction : MonoBehaviour {
 				GameObject gem = (GameObject)Instantiate (opponent_gem_prefab, transform.position + Vector3.up * 0.8f, Quaternion.identity);
 				gem_interaction.Hold (gem);
 				collider.GetComponent<BaseScoreController> ().LoseScore ();
+				GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayGemupSound ();
 			}
 			return true;
 		}

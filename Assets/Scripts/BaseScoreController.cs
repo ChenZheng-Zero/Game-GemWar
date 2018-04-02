@@ -34,6 +34,7 @@ public class BaseScoreController: MonoBehaviour {
 	}
 
 	public void AddScore(string color) {
+		GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayScoreSound ();
 		score_juice.StarBurst ();
 		score_juice.StartBounceCoroutine ();
 

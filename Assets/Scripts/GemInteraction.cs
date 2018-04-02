@@ -39,6 +39,7 @@ public class GemInteraction : MonoBehaviour {
 					gem.transform.parent = null;
 					gem.transform.position = facing_position;
 					gem.GetComponent<BoxCollider> ().enabled = true;
+					GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayGemdownSound ();
 				}
 			} else {
 				Collider collider = PublicFunctions.instance.FindObjectOnPosition (transform.position + grid_base_movement.GetDirection ());
@@ -46,6 +47,7 @@ public class GemInteraction : MonoBehaviour {
 					collider.GetComponent<BoxCollider> ().enabled = false;
 					collider.transform.position = transform.position + Vector3.up * 0.8f;
 					Hold (collider.gameObject);
+					GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayGemupSound ();
 				}
 			}
 		}

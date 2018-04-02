@@ -20,15 +20,19 @@ public class Collector : MonoBehaviour {
 		if (collider.CompareTag ("rock_collectable") && !rock_bar_displayer.IfRockCountMax ()) {
 			rock_bar_displayer.AddRock ();
 			Destroy (collider.gameObject);
+			GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayPowerupSound ();
 		} else if (collider.CompareTag ("speed_up_buff")) {
 			buff_controller.SpeedUp ();
 			Destroy (collider.gameObject);
+			GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayPowerupSound ();
 		} else if (collider.CompareTag ("guardian_buff")) {
 			buff_controller.Guardian ();
 			Destroy (collider.gameObject);
+			GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayPowerupSound ();
 		} else if (collider.CompareTag ("super_rock_buff")) {
 			buff_controller.SuperRock ();
 			Destroy (collider.gameObject);
+			GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayPowerupSound ();
 		}
 	}
 }
