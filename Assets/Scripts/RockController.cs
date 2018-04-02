@@ -70,6 +70,7 @@ public class RockController : MonoBehaviour {
 
 	void OnDestroy() {
 		Instantiate (lightening, transform.position - new Vector3(0f, 0f, 0.5f), Quaternion.identity);
+		GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayExplodeSound ();
 		Instantiate (rock_collectable_prefab, transform.position, Quaternion.identity);
 	}
 
@@ -104,6 +105,7 @@ public class RockController : MonoBehaviour {
 					shot_by.GetComponent<PlayerDataController> ().AddKill ();
 				}
 				collider.GetComponent<Reborn> ().StartRebornCoroutine ();
+				GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayDeathSound ();
 			}
 
 			if (speed_coefficient == 1.0f) {

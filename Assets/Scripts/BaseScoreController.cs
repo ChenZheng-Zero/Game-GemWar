@@ -29,6 +29,7 @@ public class BaseScoreController: MonoBehaviour {
 	}
 
 	public void AddScore(string color) {
+		GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayScoreSound ();
 		++current_score;
 		Debug.Log ("Current Score: " + current_score.ToString());
 		scores [current_score - 1].GetComponent<SpriteRenderer> ().enabled = true;
