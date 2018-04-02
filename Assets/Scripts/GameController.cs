@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
 			for (int i = 0; i < 4; ++i) {
 				if (InputManager.Devices [i].Action3) {
 //					SceneManager.LoadSceneAsync ("main");
-					ScreenTransition.instance.TranistionTo ("sudden_death");
+					SceneTransition.instance.TranistionTo ("sudden_death");
 				}
 			}
 		}
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
 		if (blue_score == red_score) {
 			Debug.Log ("Even");
 //			SceneManager.LoadSceneAsync ("sudden_death");
-			ScreenTransition.instance.TranistionTo ("sudden_death");
+			SceneTransition.instance.TranistionTo ("sudden_death");
 		} else {
 			game_over = true;
 			GetComponent<PlayerDataDisplayer> ().Display ();

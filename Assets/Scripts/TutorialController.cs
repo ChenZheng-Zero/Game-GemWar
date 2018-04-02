@@ -197,7 +197,7 @@ public class TutorialController : MonoBehaviour {
 				}
 				if (check_finish_letter && !finish_letter) {
 //					SceneManager.LoadScene (0);
-					ScreenTransition.instance.TranistionTo ("tutorial");
+					SceneTransition.instance.TranistionTo ("tutorial");
 					break;
 				}
 			}

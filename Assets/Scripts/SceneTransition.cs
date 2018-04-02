@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScreenTransition : MonoBehaviour {
+public class SceneTransition : MonoBehaviour {
 
 	private RectTransform curtain_left_rt;
 	private RectTransform curtain_right_rt;
@@ -13,7 +13,7 @@ public class ScreenTransition : MonoBehaviour {
 	public float open_x = 1500.0f;
 	public float close_x = 500.0f;
 	public float speed = 500.0f;
-	public static ScreenTransition instance;
+	public static SceneTransition instance;
 
 	void Awake () {
 		if (instance != null && instance != this) {
