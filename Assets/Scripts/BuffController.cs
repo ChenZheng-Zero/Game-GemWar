@@ -5,9 +5,8 @@ using UnityEngine;
 public class BuffController : MonoBehaviour {
 
 	private int speed_up = 0;
-	private int guardian = 0;
+//	private int guardian = 0;
 	private int super_rock = 0;
-	private Object shield_prefab;
 	private GameObject shield = null;
 	private RockBarDisplayer rock_bar_displayer;
 
@@ -18,8 +17,14 @@ public class BuffController : MonoBehaviour {
 	public float super_rock_speed_ratio = 1.5f;
 
 	void Start () {
-		shield_prefab = Resources.Load ("Prefabs/shield", typeof(GameObject));
 		rock_bar_displayer = GetComponent<RockBarDisplayer> ();
+
+		foreach (Transform child in transform) {
+			if (child.name == "shield") {
+				shield = child.gameObject;
+				break;
+			}
+		}
 	}
 
 	// Speed Up
@@ -44,34 +49,33 @@ public class BuffController : MonoBehaviour {
 
 	// Guardian
 
-	private IEnumerator GuardianCoroutine() {
-		guardian += 1;
-
-		for (float t = 0.0f; t < guardian_duration; t += Time.deltaTime) {
-			if (!shield) {
-				break;
-			}
-			yield return null;
-		}
-
-		if (shield) {
-			guardian -= 1;
-			if (guardian == 0) {
-				ResetGuardian ();
-			}
-		}
-	}
+//	private IEnumerator GuardianCoroutine() {
+//		guardian += 1;
+//
+//		for (float t = 0.0f; t < guardian_duration; t += Time.deltaTime) {
+//			if (!shield) {
+//				break;
+//			}
+//			yield return null;
+//		}
+//
+//		if (shield) {
+//			guardian -= 1;
+//			if (guardian == 0) {
+//				ResetGuardian ();
+//			}
+//		}
+//	}
 
 	public void Guardian() {
-		if (!shield) {
-			shield = (GameObject)Instantiate (shield_prefab, transform.position, Quaternion.identity);
-			shield.transform.parent = transform;
+		if (!shield.activeSelf) {
+			shield.SetActive (true);
+			shield.GetComponent<ParticleSystem> ().Emit (1);
 		}
-//		StartCoroutine (GuardianCoroutine ());
 	}
 
 	public bool GetGuardian() {
-		if (shield) {
+		if (shield.activeSelf) {
 			return true;
 		} else {
 			return false;
@@ -80,8 +84,7 @@ public class BuffController : MonoBehaviour {
 
 	public void ResetGuardian() {
 		if (shield) {
-			Destroy (shield);
-			shield = null;
+			shield.SetActive (false);
 		}
 //		guardian = 0;
 	}

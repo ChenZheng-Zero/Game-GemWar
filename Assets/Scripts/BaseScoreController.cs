@@ -6,13 +6,18 @@ using UnityEngine.SceneManagement;
 public class BaseScoreController: MonoBehaviour {
 
 	private string own_color;
+	private ScoreJuice score_juice;
 	private List<GameObject> scores = new List<GameObject> ();
 
 	public int current_score = 3;
 
 	void Start () {
+		score_juice = GetComponent<ScoreJuice> ();
+
 		foreach (Transform child in transform) {
-			scores.Add (child.gameObject);
+			if (child.name != "star_burst") {
+				scores.Add (child.gameObject);
+			}
 		}
 
 		if (tag == "base_blue") {
@@ -30,23 +35,18 @@ public class BaseScoreController: MonoBehaviour {
 
 	public void AddScore(string color) {
 		GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayScoreSound ();
+		score_juice.StarBurst ();
+		score_juice.StartBounceCoroutine ();
+
 		++current_score;
-		Debug.Log ("Current Score: " + current_score.ToString());
 		scores [current_score - 1].GetComponent<SpriteRenderer> ().enabled = true;
 
-		//		if (color != own_color) {
-		//			if (own_color == "blue") {
-		//				ScoreDisplayer.instance.ModifyBlueScore (1);
-		//				ScoreDisplayer.instance.ModifyRedScore (-1);
-		//			} else {
-		//				ScoreDisplayer.instance.ModifyBlueScore (-1);
-		//				ScoreDisplayer.instance.ModifyRedScore (1);
-		//			}
-		//		}
 		if (SceneManager.GetActiveScene ().name == "sudden_death") {
-			Debug.Log ("Sudden Death Winning");
-			if (own_color == "blue") ScoreDisplayer.instance.BlueWinScore ();
-			else ScoreDisplayer.instance.RedWinScore ();
+			if (own_color == "blue") {
+				ScoreDisplayer.instance.BlueWinScore ();
+			} else {
+				ScoreDisplayer.instance.RedWinScore ();
+			}
 			GameController.instance.SetGameOver ();
 		} else {
 			if (own_color == "blue" && color == "blue") {

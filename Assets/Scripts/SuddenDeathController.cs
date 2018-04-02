@@ -16,7 +16,6 @@ public class SuddenDeathController : MonoBehaviour {
 	public float warning_interval = 1.0f;
 	public RawImage warning_panel;
 
-	// Use this for initialization
 	void Start () {
 		text = GetComponent<Text> ();
 		players = new GameObject[4];
@@ -42,7 +41,6 @@ public class SuddenDeathController : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
 	void Update () {
 		if (sudden_death_mode) {
 			if (CheckHoldingStatus () == true || text.enabled == true) {

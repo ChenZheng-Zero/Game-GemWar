@@ -22,10 +22,10 @@ public class PlaySound : MonoBehaviour {
 	
 	void Update () {
 		if (timestamp == 0f) {
-			AudioSource.PlayClipAtPoint (BGM, Camera.main.transform.position, 0.5f);
+			AudioSource.PlayClipAtPoint (BGM, Camera.main.transform.position, 0.2f);
 			timestamp += Time.deltaTime;
 		} else{
-			if (timestamp == BGM.length) {
+			if (timestamp > BGM.length) {
 				timestamp = 0f;
 			} else {
 				timestamp += Time.deltaTime;
