@@ -98,7 +98,7 @@ public class RockInteraction : MonoBehaviour {
 			} else if (!rock_bar_displayer.IfRockCountZero () && 
 				(collider && PublicFunctions.instance.GetTeamNumber(tag) + PublicFunctions.instance.GetTeamNumber(collider.tag) == 3 ||
 				!(collider && (collider.CompareTag("base_blue") || collider.CompareTag("wall") || collider.CompareTag("base_red") || collider.CompareTag("gem_blue") || collider.CompareTag("gem_red") || collider.CompareTag(opponent_rock_tag) ||
-				collider.CompareTag("reborn_red") || collider.CompareTag("reborn_blue") || PublicFunctions.instance.GetTeamNumber(tag) == PublicFunctions.instance.GetTeamNumber(collider.tag))))) {
+				collider.CompareTag("spawn") || collider.CompareTag("reborn_red") || collider.CompareTag("reborn_blue") || PublicFunctions.instance.GetTeamNumber(tag) == PublicFunctions.instance.GetTeamNumber(collider.tag))))) {
 
 				GameObject rock;
 				if (rock_bar_displayer.IfNextSuperRock ()) {

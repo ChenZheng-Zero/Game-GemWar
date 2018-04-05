@@ -12,6 +12,7 @@ public class Reborn : MonoBehaviour {
 	private Text time_left;
 	private BoxCollider bc;
 	private SpriteRenderer sr;
+	private BuffController buff_controller;
 	private GemInteraction gem_interaction;
 	private GridBaseMovement grid_base_movement;
 	private PlayerDataController player_data_controller;
@@ -25,6 +26,7 @@ public class Reborn : MonoBehaviour {
 		bc = GetComponent<BoxCollider> ();
 		sr = GetComponent<SpriteRenderer> ();
 		time_left = reborn_UI.GetComponent<Text> ();
+		buff_controller = GetComponent<BuffController> ();
 		gem_interaction = GetComponent<GemInteraction> ();
 		grid_base_movement = GetComponent<GridBaseMovement> ();
 		player_data_controller = GetComponent<PlayerDataController> ();
@@ -65,6 +67,8 @@ public class Reborn : MonoBehaviour {
 		}
 
 		transform.position = reborn_position;
+		buff_controller.SpeedUp ();
+		buff_controller.Guardian ();
 		reborn_UI.SetActive (false);
 
 		rock_bar.SetActive (true);

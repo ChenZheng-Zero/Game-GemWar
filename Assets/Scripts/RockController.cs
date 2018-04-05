@@ -76,7 +76,7 @@ public class RockController : MonoBehaviour {
 
 	private bool CheckStopingTag(string col_tag) {
 		if (col_tag == tag || col_tag == "base_blue" || col_tag == "base_red" || col_tag == "wall" || col_tag == "gem_blue" || col_tag == "gem_red" ||
-			col_tag == "reborn_blue" || col_tag == "reborn_red" || team_number == PublicFunctions.instance.GetTeamNumber (col_tag)) {
+			col_tag == "spawn" || col_tag == "reborn_blue" || col_tag == "reborn_red" || team_number == PublicFunctions.instance.GetTeamNumber (col_tag)) {
 			return true;
 		} else {
 			return false;

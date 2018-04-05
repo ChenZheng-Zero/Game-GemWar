@@ -29,6 +29,7 @@ TagManager:
   - super_rock_buff
   - fake_player
   - gem_green
+  - spawn
   layers:
   - Default
   - TransparentFX
