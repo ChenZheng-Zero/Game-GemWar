@@ -52,10 +52,10 @@ public class SceneTransition : MonoBehaviour {
 	}
 
 	private IEnumerator OpenCurtain() {
-		yield return new WaitForSeconds (0.2f);
-
 		curtain_left_rt.anchoredPosition = -close_x * Vector2.right;
 		curtain_right_rt.anchoredPosition = close_x * Vector2.right;
+
+		yield return new WaitForSeconds (0.2f);
 
 		Vector2 left_origin_pos = curtain_left_rt.anchoredPosition;
 		Vector2 right_origin_pos = curtain_right_rt.anchoredPosition;

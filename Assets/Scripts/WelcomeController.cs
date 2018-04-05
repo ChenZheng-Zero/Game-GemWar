@@ -12,6 +12,9 @@ public class WelcomeController : MonoBehaviour {
 
 	int[] choice;
 
+	bool before_trans = false;
+
+
 	void Start () {
 		players = new GameObject[4];
 		sprites = new GameObject[4];
@@ -35,10 +38,14 @@ public class WelcomeController : MonoBehaviour {
 			}
 		}
 		int next = CheckProceed ();
-		if (next == 1) {
-			SceneManager.LoadScene ("tutorial");
-		} else if (next == 2) {
-			SceneManager.LoadScene ("main");
+		if (next == 1 && !before_trans) {
+//			SceneManager.LoadScene ("tutorial");
+			SceneTransition.instance.TranistionTo ("tutorial");
+			before_trans = true;
+		} else if (next == 2 && !before_trans) {
+//			SceneManager.LoadScene ("main");
+			SceneTransition.instance.TranistionTo ("main");
+			before_trans = true;
 		}
 
 	}

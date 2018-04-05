@@ -7,6 +7,7 @@ using InControl;
 public class GameController : MonoBehaviour {
 
 	private bool game_over = false;
+	private bool scene_transition_triggered = false;
 	public static GameController instance;
 
 	void Awake () {
@@ -19,11 +20,11 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (game_over) {
+		if (game_over && !scene_transition_triggered) {
 			for (int i = 0; i < 4; ++i) {
 				if (InputManager.Devices [i].Action3) {
-//					SceneManager.LoadSceneAsync ("main");
-					SceneTransition.instance.TranistionTo ("sudden_death");
+					scene_transition_triggered = true;
+					SceneTransition.instance.TranistionTo ("main");
 				}
 			}
 		}
@@ -34,9 +35,10 @@ public class GameController : MonoBehaviour {
 		int red_score = ScoreDisplayer.instance.GetRedScore ();
 
 		if (blue_score == red_score) {
-			Debug.Log ("Even");
-//			SceneManager.LoadSceneAsync ("sudden_death");
-			SceneTransition.instance.TranistionTo ("sudden_death");
+			if (!scene_transition_triggered) {
+				scene_transition_triggered = true;
+				SceneTransition.instance.TranistionTo ("sudden_death");
+			}
 		} else {
 			game_over = true;
 			GetComponent<PlayerDataDisplayer> ().Display ();
