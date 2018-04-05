@@ -21,18 +21,10 @@ public class Ghosting : MonoBehaviour {
 	}
 	
 	void Update () {
-//		if (buff_controller.GetSpeedCoefficient () != 1.0f && !actived) {
-//			actived = true;
-//			ps.Play ();
-//		} else if ((reborn.GetReborning() || buff_controller.GetSpeedCoefficient () == 1.0f) && actived) {
-//			actived = false;
-//			ps.Stop ();
-//		}
-
-		if (buff_controller.GetSpeedCoefficient () != 1.0f) {
-			ghosting.SetActive (true);
-		} else if (reborn.GetReborning() || buff_controller.GetSpeedCoefficient () == 1.0f) {
+		if (reborn.GetReborning() || buff_controller.GetSpeedCoefficient () == 1.0f) {
 			ghosting.SetActive (false);
+		} else if (buff_controller.GetSpeedCoefficient () != 1.0f) {
+			ghosting.SetActive (true);
 		}
 	}
 }
