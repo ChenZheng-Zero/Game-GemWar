@@ -84,7 +84,7 @@ public class GridBaseMovement : MonoBehaviour {
 	private bool CheckObstacle(Vector3 pos) {
 		Collider collider = PublicFunctions.instance.FindObjectOnPosition (pos);
 
-		if (collider && (collider.CompareTag ("base_blue") || collider.CompareTag ("base_red") || collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") ||
+		if (collider && (collider.CompareTag ("base_blue") || collider.CompareTag ("base_red") || collider.CompareTag ("gem_blue") || collider.CompareTag ("gem_red") || 
 			collider.CompareTag ("wall") || collider.CompareTag ("rock_blue") || collider.CompareTag ("rock_red") || collider.CompareTag ("fake_player") || collider.CompareTag(opponent_reborn_tag) || 
 			team_number + PublicFunctions.instance.GetTeamNumber (collider.tag) == 3)) {
 
