@@ -48,6 +48,7 @@ public class SceneTransition : MonoBehaviour {
 		curtain_left_rt.anchoredPosition = -close_x * Vector2.right;
 		curtain_right_rt.anchoredPosition = close_x * Vector2.right;
 
+		DestroyRocks ();
 		SceneManager.LoadSceneAsync (scene);
 	}
 
@@ -74,5 +75,14 @@ public class SceneTransition : MonoBehaviour {
 
 	public void TranistionTo(string scene) {
 		StartCoroutine (CloseCurtain (scene));
+	}
+
+	private void DestroyRocks() {
+		foreach (GameObject rock in GameObject.FindGameObjectsWithTag ("rock_blue")) {
+			Destroy (rock);
+		}
+		foreach (GameObject rock in GameObject.FindGameObjectsWithTag ("rock_red")) {
+			Destroy (rock);
+		}
 	}
 }
