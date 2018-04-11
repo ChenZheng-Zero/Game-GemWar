@@ -13320,9 +13320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'abcdefghijklmn
-
-    opqrstuvwxyz'
+  m_Text: Buffs in the game
 --- !u!222 &1789948169
 CanvasRenderer:
   m_ObjectHideFlags: 0

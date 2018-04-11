@@ -7,23 +7,6 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour {
-	/* Tutorial event-driven system
-	 * 0: Collect rock tutorial->
-	 * 1: Place rock tutorial
-	 * 2: Push rock tutorial->
-	 * 3: Break self rock
-	 * 4: break opponent rock
-	 * 5: Kill a fake opponent->
-	 * 6: Carry gem tutorial
-	 * 
-	 * 
-	 * 
-	 * Shared methods:
-	 * 1. CreateDialogBox(Vector3 pos, string text): create a dialog box at pos and initialize with text
-	 *    Returns the created game object.
-	 * 2. EditDialogBox(GameObject box, string text): edit the text of the dialog box.
-	 * 3. PlayerFunctionConstraint(bool allow_place_rock, bool allow_get_gems): prevent or allow user functions.
-	 */
 
 	public GameObject rock_collectable;
 	public GameObject dialog_box;
@@ -158,6 +141,7 @@ public class TutorialController : MonoBehaviour {
 
 		string text_4 = "Tutorial 2: Carry Gem\n\nPress A to steal your opponents' gems and drop them in your base.";
 		string text_5 = "Congratulations! You finish all tutorials.\n\nThe team carries more gems will win.";
+		string text_6 = "BUFF";
 
 		GameObject letter_box = CreateLetter (new string[]{text_4}, new VideoClip[]{video_clips[1]});
 		GameObject finish_letter = null;
@@ -193,7 +177,7 @@ public class TutorialController : MonoBehaviour {
 			if (CheckEveryPlayer (1)) {
 				if (!check_finish_letter) {
 					check_finish_letter = true;
-					finish_letter = CreateLetter (new string[]{ text_5 }, new VideoClip[]{ null });
+					finish_letter = CreateLetter (new string[]{ text_5, text_6 }, new VideoClip[]{ null, null });
 				}
 				if (check_finish_letter && !finish_letter) {
 					SceneTransition.instance.TranistionTo ("welcome");
@@ -243,6 +227,12 @@ public class TutorialController : MonoBehaviour {
 		if (collider.gameObject.CompareTag ("rock_collectable"))
 			return true;
 		return false;
+	}
+
+	public void BUFF_pannel(){
+		panel_text.GetComponent<Text> ().text = "Buffs in the game.";
+		panel_buttonA.GetComponent<Image> ().enabled = false;
+		panel_buttonB.GetComponent<Image> ().enabled = false;
 	}
 
 
