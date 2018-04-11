@@ -67,8 +67,8 @@ public class Reborn : MonoBehaviour {
 		}
 
 		transform.position = reborn_position;
-		buff_controller.SpeedUp ();
-		buff_controller.Guardian ();
+		buff_controller.RebornSpeedUp ();
+		buff_controller.RebornGuardian ();
 		reborn_UI.SetActive (false);
 
 		rock_bar.SetActive (true);
