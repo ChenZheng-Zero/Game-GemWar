@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			SceneTransition.instance.TranistionTo ("welcome");
+		}
+
 		if (game_over && !scene_transition_triggered) {
 			for (int i = 0; i < 4; ++i) {
 				if (InputManager.Devices [i].Action3) {
