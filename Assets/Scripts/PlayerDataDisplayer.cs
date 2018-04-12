@@ -41,11 +41,17 @@ public class PlayerDataDisplayer : MonoBehaviour {
 		}
 
 		for (int i = 0; i < 4; ++i) {
-			PlayerDataController data = players [i].GetComponent<PlayerDataController> ();
-			player_scores [i].transform.GetChild (0).GetComponent<Text> ().text = data.GetKill ().ToString ();
-			player_scores [i].transform.GetChild (1).GetComponent<Text> ().text = data.GetScore ().ToString ();
-			player_scores [i].transform.GetChild (2).GetComponent<Text> ().text = data.GetShoot ().ToString ();
-			player_scores [i].transform.GetChild (3).GetComponent<Text> ().text = data.GetDeath ().ToString ();
+//			PlayerDataController data = players [i].GetComponent<PlayerDataController> ();
+//			player_scores [i].transform.GetChild (0).GetComponent<Text> ().text = data.GetKill ().ToString ();
+//			player_scores [i].transform.GetChild (1).GetComponent<Text> ().text = data.GetScore ().ToString ();
+//			player_scores [i].transform.GetChild (2).GetComponent<Text> ().text = data.GetShoot ().ToString ();
+//			player_scores [i].transform.GetChild (3).GetComponent<Text> ().text = data.GetDeath ().ToString ();
+
+			string tag = "player" + (i + 1).ToString ();
+			player_scores [i].transform.GetChild (0).GetComponent<Text> ().text = StaticPlayerDataController.GetData(tag, "kill").ToString ();
+			player_scores [i].transform.GetChild (1).GetComponent<Text> ().text = StaticPlayerDataController.GetData(tag, "score").ToString ();
+			player_scores [i].transform.GetChild (2).GetComponent<Text> ().text = StaticPlayerDataController.GetData(tag, "shoot").ToString ();
+			player_scores [i].transform.GetChild (3).GetComponent<Text> ().text = StaticPlayerDataController.GetData(tag, "death").ToString ();
 		}
 	}
 

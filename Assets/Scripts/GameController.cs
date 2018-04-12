@@ -16,9 +16,13 @@ public class GameController : MonoBehaviour {
 		} else {
 			instance = this;
 		}
+
+		if (SceneManager.GetActiveScene ().name == "main") {
+			StaticPlayerDataController.ClearData ();
+		}
 		Screen.SetResolution (1920, 1200, true);
 	}
-	
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			SceneTransition.instance.TranistionTo ("welcome");

@@ -18,7 +18,7 @@ public class RockInteraction : MonoBehaviour {
 	private BuffController buff_controller;
 	private GridBaseMovement grid_base_movement;
 	private RockBarDisplayer rock_bar_displayer;
-	private PlayerDataController player_data_controller;
+//	private PlayerDataController player_data_controller;
 
 	void Start () {
 		reborn = GetComponent<Reborn> ();
@@ -26,7 +26,7 @@ public class RockInteraction : MonoBehaviour {
 		buff_controller = GetComponent<BuffController> ();
 		grid_base_movement = GetComponent<GridBaseMovement> ();
 		rock_bar_displayer = GetComponent<RockBarDisplayer> ();
-		player_data_controller = GetComponent<PlayerDataController> ();
+//		player_data_controller = GetComponent<PlayerDataController> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
 
 		own_rock_tag = "rock_" + GetComponent<PlayerControl> ().GetOwnColor ();
@@ -90,7 +90,8 @@ public class RockInteraction : MonoBehaviour {
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (facing_position);
 
 			if (collider && collider.CompareTag (own_rock_tag)) {
-				player_data_controller.AddShoot ();
+//				player_data_controller.AddShoot ();
+				StaticPlayerDataController.AddData(tag, "shoot");
 				RockController rock_controller = collider.GetComponent<RockController> ();
 				rock_controller.SetPlayer (gameObject);
 				rock_controller.SetMovingDirection (direction);

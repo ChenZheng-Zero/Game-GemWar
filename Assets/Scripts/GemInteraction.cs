@@ -11,13 +11,13 @@ public class GemInteraction : MonoBehaviour {
 	private InputDevice input_device;
 	private Reborn reborn;
 	private GridBaseMovement grid_base_movement;
-	private PlayerDataController player_data_controller;
+//	private PlayerDataController player_data_controller;
 
 	void Start () {
 		reborn = GetComponent<Reborn> ();
 		input_device = GetComponent<PlayerControl> ().GetInputDevice ();
 		grid_base_movement = GetComponent<GridBaseMovement> ();
-		player_data_controller = GetComponent<PlayerDataController> ();
+//		player_data_controller = GetComponent<PlayerDataController> ();
 	}
 
 	void Update () {
@@ -85,7 +85,8 @@ public class GemInteraction : MonoBehaviour {
 		holding = true;
 		gem = _gem;
 		gem.transform.parent = transform;
-		player_data_controller.AddGemPickUp ();
+//		player_data_controller.AddGemPickUp ();
+		StaticPlayerDataController.AddData(tag, "gem_pick_up");
 	}
 
 	public void Remove() {

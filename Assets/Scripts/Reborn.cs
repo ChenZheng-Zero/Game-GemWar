@@ -41,7 +41,8 @@ public class Reborn : MonoBehaviour {
 	}
 
 	public void StartRebornCoroutine() {
-		player_data_controller.AddDeath ();
+//		player_data_controller.AddDeath ();
+		StaticPlayerDataController.AddData(tag, "death");
 		gameObject.GetComponent<DeathController> ().StartDeadCoroutine();
 		StartCoroutine (RebornCoroutine ());
 	}

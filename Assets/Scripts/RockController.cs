@@ -102,7 +102,8 @@ public class RockController : MonoBehaviour {
 				}
 
 				if (shot_by) {
-					shot_by.GetComponent<PlayerDataController> ().AddKill ();
+//					shot_by.GetComponent<PlayerDataController> ().AddKill ();
+					StaticPlayerDataController.AddData(shot_by.tag, "kill");
 				}
 				collider.GetComponent<Reborn> ().StartRebornCoroutine ();
 				GameObject.Find ("SoundController").GetComponent<PlaySound> ().PlayDeathSound ();
