@@ -97,7 +97,7 @@ public class TutorialController : MonoBehaviour {
 		
 	IEnumerator Level0(){
 
-		string text_1 = "Tutorial 1: Box\n\nStep 1: Break red and blue Boxes\nStep 2: Shoot your box onto the opponent.";
+		string text_1 = "Tutorial 1: Boxes\n\nStep 1: Break red and blue boxes\nStep 2: Shoot your box onto your opponent.";
 
 		GameObject letter_box = CreateLetter (new string[]{ text_1 }, new VideoClip[]{video_clips[0]});
 		GameObject[] fake_players = new GameObject[4];
@@ -139,8 +139,8 @@ public class TutorialController : MonoBehaviour {
 
 	IEnumerator Level1(){
 
-		string text_4 = "Tutorial 2: Carry Gem\n\nPress A to steal your opponents' gems and drop them in your base.";
-		string text_5 = "Congratulations! You finish all tutorials.\n\nThe team carries more gems will win.";
+		string text_4 = "Tutorial 2: Carry Gem\n\nPress A to steal your opponents' gems and drop them in your house.";
+		string text_5 = "Congratulations! You finished all tutorials.\n\nThe team carries more gems will win.";
 		string text_6 = "BUFF";
 
 		GameObject letter_box = CreateLetter (new string[]{text_4}, new VideoClip[]{video_clips[1]});
@@ -169,11 +169,12 @@ public class TutorialController : MonoBehaviour {
 					player_progress [i] = 1.5f;
 				} 
 				if (player_progress [i] == 1.5f) {
-					if (players [i].GetComponent<PlayerDataController> ().GetScore() > 0) {
+					if (StaticPlayerDataController.GetData("player" + (i+1).ToString (), "score") > 0) {
 						player_progress [i] = 2.0f;
 					}
 				}
 			}
+
 			if (CheckEveryPlayer (1)) {
 				if (!check_finish_letter) {
 					check_finish_letter = true;
