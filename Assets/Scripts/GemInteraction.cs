@@ -99,8 +99,13 @@ public class GemInteraction : MonoBehaviour {
 	public void DropGemAfterHit() {
 		if (holding) {
 			gem.transform.parent = null;
+			Vector3 drop_position = PublicFunctions.instance.RoundVector3 (transform.position);
+			Collider collider = PublicFunctions.instance.FindObjectOnPosition (drop_position);
+			if (collider && (collider.CompareTag ("rock_blue") || collider.CompareTag ("rock_red"))) {
+				Destroy (collider);
+			}
 			gem.GetComponent<BoxCollider> ().enabled = true;
-			gem.transform.position = PublicFunctions.instance.RoundVector3 (transform.position);
+			gem.transform.position = drop_position;
 			holding = false;
 		}
 	}
