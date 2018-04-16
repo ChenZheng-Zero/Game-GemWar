@@ -103,7 +103,7 @@ public class BuffController : MonoBehaviour {
 	}
 
 	public bool GetGuardian() {
-		if (shield.activeSelf) {
+		if (shield.activeSelf || temporary_shield.activeSelf) {
 			return true;
 		} else {
 			return false;
@@ -111,7 +111,9 @@ public class BuffController : MonoBehaviour {
 	}
 
 	public void ResetGuardian() {
-		if (shield) {
+		if (temporary_shield.activeSelf) {
+			temporary_shield.SetActive (false);
+		} else {
 			shield.SetActive (false);
 		}
 //		guardian = 0;
