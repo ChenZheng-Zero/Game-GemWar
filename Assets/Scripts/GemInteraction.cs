@@ -102,7 +102,7 @@ public class GemInteraction : MonoBehaviour {
 			Vector3 drop_position = PublicFunctions.instance.RoundVector3 (transform.position);
 			Collider collider = PublicFunctions.instance.FindObjectOnPosition (drop_position);
 			if (collider && (collider.CompareTag ("rock_blue") || collider.CompareTag ("rock_red"))) {
-				Destroy (collider);
+				Destroy (collider.gameObject);
 			}
 			gem.GetComponent<BoxCollider> ().enabled = true;
 			gem.transform.position = drop_position;
